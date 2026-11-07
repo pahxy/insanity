@@ -21,9 +21,9 @@ import java.util.List;
 public class ModItems {
 
     // 'refreshed' effect durations for foods.
-    public static final int CHAMOMILE_DURATION = 100;
-    public static final int MINT_DURATION = 75;
-    public static final int TEA_DURATION = 800;
+    public static final int CHAMOMILE_DURATION = 150;
+    public static final int MINT_DURATION = 150;
+    public static final int TEA_DURATION = 1100;
 
     public static Item STAND_ARROW;
     public static Item STAND_BEETLE_ARROW;
@@ -74,6 +74,7 @@ public class ModItems {
     public static Item STAND_DISC_MANHATTAN_TRANSFER;
     public static Item STAND_DISC_BLACK_SABBATH;
     public static Item STAND_DISC_PEARL_JAM;
+    public static Item STAND_DISC_CATCH_THE_RAINBOW;
     public static Item STAND_DISC_HEY_YA;
     public static Item STAND_DISC_MANDOM;
     public static Item STAND_DISC_SURVIVOR;
@@ -82,6 +83,8 @@ public class ModItems {
     public static Item STAND_DISC_LYIN_EYES;
     public static Item STAND_DISC_DIVER_DOWN;
     public static Item MAX_STAND_DISC_DIVER_DOWN;
+    public static Item STAND_DISC_GOLD_EXPERIENCE;
+    public static Item MAX_STAND_DISC_GOLD_EXPERIENCE;
     public static Item STAND_DISC_SILVER_CHARIOT;
     public static Item MAX_STAND_DISC_SILVER_CHARIOT;
     public static Item STAND_DISC_METALLICA;
@@ -123,10 +126,16 @@ public class ModItems {
     public static Item METEORITE;
     public static Item METEORITE_INGOT;
     public static Item TERRIER_SPAWN_EGG;
+    public static Item FALCON_SPAWN_EGG;
     public static Item ZOMBIE_MINION_SPAWN_EGG;
     public static Item AESTHETICIAN_SPAWN_EGG;
     public static Item ZOMBIE_AESTHETICIAN_SPAWN_EGG;
     public static Item ANUBIS_GUARDIAN_SPAWN_EGG;
+    public static Item SNAKE_SPAWN_EGG;
+    public static Item PIRANHA_SPAWN_EGG;
+    public static Item SNAKE_SKIN;
+    public static Item SNAKE_OIL;
+    public static Item SNAKE_SKIN_BOOTS;
     public static Item ROAD_ROLLER;
 
     public static Item IRON_BALL_CROSSBOW;
@@ -187,6 +196,7 @@ public class ModItems {
 
     public static Item MUSIC_DISC_TORTURE_DANCE;
     public static Item MUSIC_DISC_HALLELUJAH;
+    public static Item MUSIC_DISC_CHAKA_HFTF;
     public static Item LUCKY_LIPSTICK;
 
     public static Item MEMORY_PAWN;
@@ -208,6 +218,7 @@ public class ModItems {
     public static Item MODIFICATION_MASK;
     public static Item DIAVOLO_MASK;
     public static Item DOPPIO_MASK;
+    public static Item KHAN_MASK;
     public static Item BOSS_MASK;
     public static Item TIM_MASK;
     public static Item SANDMAN_MASK;
@@ -233,10 +244,14 @@ public class ModItems {
     public static Item KIRA_PART_FOUR_MASK;
     public static Item KIRA_PART_EIGHT_MASK;
     public static Item KOSAKU_MASK;
+    public static Item FUGO_MASK;
+    public static Item FUGO_FEEDBACK_MASK;
     public static Item KIRASAKU_MASK;
     public static Item HAYATO_KAWAJIRI_MASK;
     public static Item AYA_MASK;
     public static Item MISTA_MASK;
+    public static Item OYECOMOVA_MASK;
+    public static Item ABBACCHIO_MASK;
     public static Item GHIACCIO_MASK;
     public static Item JOHNNY_MASK;
     public static Item JOHNGALLIA_MASK;
@@ -251,10 +266,13 @@ public class ModItems {
     public static Item AESTHETICIAN_MASK_5;
     public static Item AESTHETICIAN_MASK_ZOMBIE;
     public static Item POCOLOCO_MASK;
+    public static Item POLNAREFF_MASK;
+    public static Item BLACK_POLNAREFF_MASK;
     public static Item RINGO_MASK;
     public static Item ANASUI_MASK;
     public static Item FEM_ANASUI_MASK;
     public static Item ANAKISS_MASK;
+    public static Item BLACKMORE_MASK;
     public static Item GUCCIO_MASK;
     public static Item HATO_MASK;
     public static Item SHIZUKA_MASK;
@@ -325,8 +343,8 @@ public class ModItems {
                 ClientNetworking.getAppropriateConfig().cinderellaSettings.emeraldCostModificationVisage);
         int characterCostExp = ClientNetworking.getAppropriateConfig().cinderellaSettings.levelCostCharacterVisage;
         int characterCostEmerald = ClientNetworking.getAppropriateConfig().cinderellaSettings.emeraldCostCharacterVisage;
-        //37 67 -34
-        page++;
+        //37 67 -34 + Each page can contain 5x5 masks.
+        page++; // 14 / 25
         addToVisageStore(SPEEDWAGON_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DIO_VAMPIRE_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(STRAIZO_VAMPIRE_MASK,page, characterCostExp, characterCostEmerald);
@@ -338,15 +356,21 @@ public class ModItems {
         addToVisageStore(SHADOW_DIO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(ENYA_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(CHAKA_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(KHAN_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(POLNAREFF_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(BLACK_POLNAREFF_MASK,page, characterCostExp, characterCostEmerald);
 
-        page++;
+        page++; // 20 / 25
         addToVisageStore(JOTARO_4_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(AYA_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(MISTA_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(FUGO_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(FUGO_FEEDBACK_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(GHIACCIO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(BOSS_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DIAVOLO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DOPPIO_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(ABBACCHIO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(JOTARO_6_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(JOHNGALLIA_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(ANASUI_MASK,page, characterCostExp, characterCostEmerald);
@@ -358,7 +382,7 @@ public class ModItems {
         addToVisageStore(KOSAKU_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(HAYATO_KAWAJIRI_MASK,page, characterCostExp, characterCostEmerald);
 
-        page++;
+        page++; // 15 / 25
         addToVisageStore(JOHNNY_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(GYRO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(LUCY_MASK,page, characterCostExp, characterCostEmerald);
@@ -367,17 +391,22 @@ public class ModItems {
         addToVisageStore(DIEGO_2_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(SANDMAN_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(POCOLOCO_MASK,page, characterCostExp, characterCostEmerald);
+        addToVisageStore(OYECOMOVA_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(TIM_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(SHERIFF_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(RINGO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(VALENTINE_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DOT_HAN_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(AVDUL_MASK,page, characterCostExp, characterCostEmerald);
+        //addToVisageStore(BLACKMORE_MASK,page, characterCostExp, characterCostEmerald);
+
+        page++;
         addToVisageStore(JOSUKE_PART_EIGHT_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DAIYA_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(DAIYA_2_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(HATO_MASK,page, characterCostExp, characterCostEmerald);
         addToVisageStore(KIRA_PART_EIGHT_MASK, page, characterCostExp, characterCostEmerald);
+        addToVisageStore(LAEM_MASK,page, characterCostExp, characterCostEmerald);
         if (ClientNetworking.getAppropriateConfig().cinderellaSettings.enableJojoveinVisagesInShop){
             page++;
             addToVisageStore(SHIZUKA_MASK,page, characterCostExp, characterCostEmerald);

@@ -173,6 +173,9 @@ public class SavedSecond {
                     VP.setWallWalkDirection(gravityDirection);
                 }
             }
+            if (((StandUser) ent).getJumpImmunityTicks() == 0) {
+                ((StandUser) ent).roundabout$setJumpImunityTicks(5);
+            }
         }
         ((IGravityEntity)ent).roundabout$setGravityDirection(gravityDirection);
 
@@ -193,6 +196,10 @@ public class SavedSecond {
                             RelativeMovement.Y,
                             RelativeMovement.Z),
         this.headYRotation,this.rotationVec.x);
+            if (ent instanceof LivingEntity LE) {
+                ((StandUser) LE).roundabout$setStartingYpos((float) position.y);
+                ((StandUser) LE).roundabout$setGoingDown(false);
+            }
             ent.hurtMarked = true;
             ent.setDeltaMovement(this.deltaMovement);
             ent.hasImpulse = true;

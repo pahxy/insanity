@@ -5,11 +5,13 @@ import net.hydra.jojomod.access.IEnderMan;
 import net.hydra.jojomod.client.ClientNetworking;
 import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.entity.ModEntities;
+import net.hydra.jojomod.entity.badCompanyTroops.BCTroop;
 import net.hydra.jojomod.entity.objects.GentlyWeepsEntity;
 import net.hydra.jojomod.event.powers.ModDamageTypes;
 import net.hydra.jojomod.event.powers.StandPowers;
 import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.sound.ModSounds;
+import net.hydra.jojomod.stand.powers.PowersBadCompany;
 import net.hydra.jojomod.util.MainUtil;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -41,7 +43,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
 
     private final List<Vec3> trailPoints = new ArrayList<>();
     // trail length
-    private static final int MAX_TRAIL_POINTS = 12;
+    private static final int MAX_TRAIL_POINTS = 16;
 
     public BadCompanyBulletEntity(EntityType<? extends BadCompanyBulletEntity> type, Level level) {
         super(type, level);
@@ -77,7 +79,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
     }
 
     private float getBulletDamage() {
-        return 1.5f;
+        return 0.1f;
     }
 
     @Override
@@ -132,13 +134,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
 
             }
 
-
-
-            boolean didDamage = livingEntity.hurt(ModDamageTypes.of(level(), getDamageType(), this, this.getOwner()), damage);
-
-            if (didDamage) {
-                applyEffect(livingEntity);
-            }
+            boolean didDamage = livingEntity.hurt(ModDamageTypes.of(level(), getDamageType(), null, this.getOwner()), damage);
 
             if (didDamage) {
                 livingEntity.invulnerableTime = 10;
@@ -163,7 +159,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
 
     ResourceKey<DamageType> getDamageType(){
 
-        return ModDamageTypes.BULLET;
+        return ModDamageTypes.STAND;
     }
 
     protected void onHitBlock2(BlockHitResult $$0) {
@@ -182,6 +178,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
         this.setSoundEvent(SoundEvents.ARROW_HIT);
         this.setShotFromCrossbow(false);
         ((IAbstractArrowAccess)this).roundabout$resetPiercedEntities();
+        discard();
     }
 
     @Override
@@ -194,10 +191,17 @@ public class BadCompanyBulletEntity extends AbstractArrow {
     public void tick() {
 
         super.tick();
+
+        if (getOwner() == null) {
+            discard();
+        }else if (!(((StandUser)getOwner()).roundabout$getStandPowers() instanceof PowersBadCompany) || MainUtil.cheapDistanceTo2(this.getX(), this.getZ(), getOwner().getX(), getOwner().getZ()) > BCTroop.getMaximumRangeBullets()) {
+            discard();
+        }
+
         ticksSinceCreation++;
 
         // for getting the trail
-        if (this.level().isClientSide() && ticksSinceCreation > 3) {
+        if (this.level().isClientSide() && ticksSinceCreation > 1) {
             if (!this.inGround && !this.isRemoved()) {
                 this.trailPoints.add(this.position().add(0, 0.1, 0));
                 if (this.trailPoints.size() > MAX_TRAIL_POINTS) {
@@ -207,6 +211,7 @@ public class BadCompanyBulletEntity extends AbstractArrow {
                 this.trailPoints.clear();
             }
         }
+
     }
 
     @Override
@@ -271,5 +276,15 @@ public class BadCompanyBulletEntity extends AbstractArrow {
         }
 
         return true;
+    }
+
+    protected boolean canHitEntity(Entity ent) {
+        if (ent == getOwner()) { return false; }
+        if (ent instanceof BCTroop BCT) {
+            if (BCT.getUser() == getOwner()) {
+                return false;
+            }
+        }
+        return super.canHitEntity(ent);
     }
 }

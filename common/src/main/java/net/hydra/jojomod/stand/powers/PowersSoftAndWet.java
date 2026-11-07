@@ -490,6 +490,7 @@ public class PowersSoftAndWet extends NewPunchingStand {
             $$1.add(SoftAndWetEntity.MANGA_SKIN);
             if (Level > 1 || bypass){
                 $$1.add(SoftAndWetEntity.DEBUT);
+                $$1.add(SoftAndWetEntity.GREEN_2);
                 $$1.add(SoftAndWetEntity.MORIOH);
                 $$1.add(SoftAndWetEntity.ART);
             } if (Level > 2 || bypass){
@@ -1302,8 +1303,13 @@ public class PowersSoftAndWet extends NewPunchingStand {
             }
 
             if (ent instanceof LivingEntity LV && ent.isAlive()) {
+
                 this.setCooldown(PowerIndex.SKILL_4_SNEAK, ClientNetworking.getAppropriateConfig().softAndWetSettings.woundPlugCooldown);
-                LV.heal(1f);
+                if((LV.getMaxHealth() - LV.getHealth()) > ClientNetworking.getAppropriateConfig().softAndWetSettings.woundPlugHealAmount) {
+                    LV.heal(ClientNetworking.getAppropriateConfig().softAndWetSettings.woundPlugHealAmount);
+                }else{
+                    LV.setHealth(LV.getMaxHealth());
+                }
                 playSoundIfPossible(self.level(),null, this.self.blockPosition(), ModSounds.CINDERELLA_SPARKLE_EVENT, SoundSource.PLAYERS, 1F, 1.5F);
 
                 sendParticlesIfPossible(self.level(),ModParticles.SMALL_EXPLOSION, LV.getEyePosition().x,
@@ -2769,6 +2775,7 @@ public void unlockSkin(){
             case SoftAndWetEntity.NATURE -> Component.translatable("skins.roundabout.soft_and_wet.nature");
             case SoftAndWetEntity.WHEEL -> Component.translatable("skins.roundabout.soft_and_wet.wheel");
             case SoftAndWetEntity.ACTION -> Component.translatable("skins.roundabout.soft_and_wet.action");
+            case SoftAndWetEntity.GREEN_2 -> Component.translatable("skins.roundabout.soft_and_wet.green_2");
             default -> Component.translatable("skins.roundabout.soft_and_wet.light");
         };
     }

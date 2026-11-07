@@ -9,6 +9,8 @@ public class ModEntityRendererClient {
      * Note: Renderers render models, but models are different files.
      * Forge and Fabric need to actually register this info into the game individually.*/
     public static final ModelLayerLocation WOLF_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "wolf"), "main");
+    public static final ModelLayerLocation SNAKE_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "snake"), "main");
+    public static final ModelLayerLocation PIRANHA_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "piranha"), "main");
     public static final ModelLayerLocation ZOMBIEFISH_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "zombiefish"), "main");
 
     public static final ModelLayerLocation VILLAGER_MINION_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "villager_minion"), "main");
@@ -28,6 +30,7 @@ public class ModEntityRendererClient {
     public static final ModelLayerLocation KNIGHT_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "knight"), "main");
 
     public static final ModelLayerLocation STRAY_CAT_ENTITY_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "stray_cat_entity"), "main");
+    public static final ModelLayerLocation FALCON_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "falcon"), "main");
     public static final ModelLayerLocation ANUBIS_GUARDIAN_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "anubis_guardian"), "main");
     public static final ModelLayerLocation THE_WORLD_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "the_world"), "main");
     public static final ModelLayerLocation KING_CRIMSON_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "king_crimson"), "main");
@@ -69,6 +72,8 @@ public class ModEntityRendererClient {
     public static final ModelLayerLocation GRABBED_MOB_SOUL_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "bs_mob_soul"), "main");
     public static final ModelLayerLocation GRABBED_MOB_SOUL_PLAYER_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "bs_player_soul"), "main");
     public static final ModelLayerLocation GRABBED_MOB_SOUL_PLAYER_SLIM_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "bs_player_soul_slim"), "main");
+    public static final ModelLayerLocation GRABBED_MANDOM_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "mandom_bs"), "main");
+    public static final ModelLayerLocation GRABBED_HEY_YA_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "hey_ya_bs"), "main");
     public static final ModelLayerLocation PEARL_JAM_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "pearl_jam"), "main");
     public static final ModelLayerLocation JUSTICE_PIRATE_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "justice_pirate"), "main");
     public static final ModelLayerLocation DARK_MIRAGE_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "dark_mirage"), "main");
@@ -82,6 +87,9 @@ public class ModEntityRendererClient {
     public static final ModelLayerLocation DIVER_DOWN_BETA_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "diver_down_beta"), "main");
     public static final ModelLayerLocation DIVER_DOWN_WORLD_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "diver_down_world"), "main");
     public static final ModelLayerLocation DIVER_DROWNED_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "diver_drowned"), "main");
+    public static final ModelLayerLocation GOLD_EXPERIENCE_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "gold_experience"), "main");
+    public static final ModelLayerLocation GOLD_EXPERIENCE_BETA_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "gold_experience_beta"), "main");
+    public static final ModelLayerLocation GE_BRAMBLE_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "ge_bramble"), "main");
     public static final ModelLayerLocation SILVER_CHARIOT_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "silver_chariot"), "main");
     public static final ModelLayerLocation SILVER_CHARIOT_PHARAOH_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "silver_chariot_pharaoh"), "main");
     public static final ModelLayerLocation SILVER_CHARIOT_RAPIER_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "silver_chariot_rapier"), "main");
@@ -130,6 +138,7 @@ public class ModEntityRendererClient {
     public static final ModelLayerLocation LEFT_SEPERATED_ARM_SLIM_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "left_seperated_arm_slim"), "main");
     public static final ModelLayerLocation KILLER_QUEEN_BLOCKBOMB = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "block_bomb"), "main");
     public static final ModelLayerLocation STEP_RULE = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "step_rule"), "main");
+    public static final ModelLayerLocation CTR_PLATFORM_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "ctr_platform"), "main");
 
     public static final ModelLayerLocation ROAD_ROLLER_LAYER = new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "road_roller"), "main");
 
@@ -139,4 +148,5 @@ public class ModEntityRendererClient {
 
     public static final ModelLayerLocation SHEER_HEART_ATTACK_LAYER =  new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "sheer_heart_attack"), "main");
     public static final ModelLayerLocation BAD_COMPANY_SOLDIER_LAYER =  new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "bad_company_soldier"), "main");
+    public static final ModelLayerLocation BAD_COMPANY_TANK_LAYER =  new ModelLayerLocation(new ResourceLocation(Roundabout.MOD_ID, "bad_company_tank"), "main");
 }

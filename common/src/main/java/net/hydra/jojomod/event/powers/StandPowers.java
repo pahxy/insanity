@@ -869,6 +869,14 @@ public class StandPowers extends AbilityScapeBasis {
             return this.getBarrageChargeSound();
         } else if (soundChoice == SoundIndex.GLAIVE_CHARGE) {
             return ModSounds.GLAIVE_CHARGE_EVENT;
+        } else if (soundChoice == TIME_STOP_CHARGE) {
+            return ModSounds.TIME_STOP_CHARGE_THE_WORLD_EVENT;
+        }else if (soundChoice == TIME_STOP_ENDING_NOISE){
+            return ModSounds.TIME_STOP_RESUME_THE_WORLD_EVENT;
+        } else if (soundChoice == TIME_STOP_ENDING_NOISE_2){
+            return ModSounds.TIME_STOP_RESUME_THE_WORLD2_EVENT;
+        } else if (soundChoice == TIME_STOP_TICKING){
+            return ModSounds.TIME_STOP_TICKING_EVENT;
         } else if (soundChoice == SoundIndex.SWORD_UNSHEATHE) {
             return ModSounds.ANUBIS_UNSHEATHE_EVENT;
         }else if (soundChoice == SoundIndex.MANHATTAN_RAIN) {
@@ -887,6 +895,8 @@ public class StandPowers extends AbilityScapeBasis {
             return ModSounds.COLT_RELOAD_EVENT;
         } else if (soundChoice == SoundIndex.TOMMY_RELOAD) {
             return ModSounds.TOMMY_RELOAD_EVENT;
+        } else if (soundChoice == SoundIndex.PISTOL_RELOAD) {
+            return ModSounds.BERETTA_RELOAD_EVENT;
         } else if (soundChoice == TIME_ERASE_END) {
             return ModSounds.TIME_ERASE_END_EVENT;
         } else if (soundChoice == TIME_SKIP_1) {
@@ -949,6 +959,11 @@ public class StandPowers extends AbilityScapeBasis {
 
 
     /**Some standard bytes for sound noises, stay clear of 40-62 as they exist universally*/
+
+    public static final byte TIME_STOP_CHARGE = 30;
+    public static final byte TIME_STOP_VOICE = TIME_STOP_CHARGE+1;
+    public static final byte TIME_STOP_VOICE_2 = TIME_STOP_CHARGE+2;
+    public static final byte TIME_STOP_VOICE_3 = TIME_STOP_CHARGE+3;
     public static final byte TIME_STOP_NOISE = 40;
     public static final byte TIME_STOP_NOISE_2 = TIME_STOP_NOISE+1;
     public static final byte TIME_STOP_NOISE_3 = TIME_STOP_NOISE+2;
@@ -961,6 +976,8 @@ public class StandPowers extends AbilityScapeBasis {
     public static final byte TIME_STOP_NOISE_10 = TIME_STOP_NOISE+9;
     public static final byte TIME_STOP_NOISE_11 = TIME_STOP_NOISE+10;
     public static final byte TIME_STOP_NOISE_12 = TIME_STOP_NOISE+11;
+    public static final byte TIME_STOP_ENDING_NOISE_2 = TIME_STOP_NOISE+13;
+    public static final byte TIME_STOP_ENDING_NOISE = TIME_STOP_NOISE+14;
     public static final byte TIME_STOP_TICKING = TIME_STOP_NOISE+16;
     public static final byte VAULT_NOISE = 58;
     public static final byte DODGE_NOISE = 59;
@@ -1006,7 +1023,11 @@ public class StandPowers extends AbilityScapeBasis {
     }
 
     public byte getSoundCancelingGroupByte(byte soundChoice) {
-        if (soundChoice == SoundIndex.BARRAGE_CHARGE_SOUND) {
+        if (soundChoice >= TIME_STOP_CHARGE && soundChoice <= TIME_STOP_VOICE_3) {
+            return SoundIndex.TIME_CHARGE_SOUND_GROUP;
+        } else if (soundChoice >= TIME_STOP_NOISE && soundChoice <= TIME_STOP_ENDING_NOISE_2) {
+            return SoundIndex.TIME_SOUND_GROUP;
+        } else if (soundChoice == SoundIndex.BARRAGE_CHARGE_SOUND) {
             return SoundIndex.BARRAGE_SOUND_GROUP;
         } else if (soundChoice <= SoundIndex.REVOLVER_RELOAD) {
             return SoundIndex.ITEM_GROUP;
@@ -1980,6 +2001,9 @@ public class StandPowers extends AbilityScapeBasis {
         return Math.max(0.0f, Math.min(1.0f, normalized)) * maxOverlay;
     }
 
+    public int getKickBarrageLength(){
+        return 50;
+    }
 
     /**This happens every time a stand barrage hits, generally you dont want to override this unless
      * your stand's barrage operates very differently*/
@@ -2002,7 +2026,9 @@ public class StandPowers extends AbilityScapeBasis {
                     }
                 }
 
-                if (this.attackTimeDuring == this.getBarrageLength()){
+                if (this.activePower == PowerIndex.BARRAGE_2 && this.attackTimeDuring == this.getKickBarrageLength()){
+                    this.attackTimeDuring = -10;
+                } else if (this.attackTimeDuring == this.getBarrageLength()){
                     this.attackTimeDuring = -10;
                 }
             }

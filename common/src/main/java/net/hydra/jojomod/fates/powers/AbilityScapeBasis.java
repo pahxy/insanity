@@ -2808,6 +2808,12 @@ public class AbilityScapeBasis {
         Vec3 vec3d3 = vec3d.add(vec3d2.x * range, vec3d2.y * range, vec3d2.z * range);
         BlockHitResult blockHit = entity.level().clip(new ClipContext(vec3d, vec3d3, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
         return blockHit;
+    } public BlockHitResult getRayBlockOutline(Entity entity, float range) {
+        Vec3 vec3d = entity.getEyePosition(0);
+        Vec3 vec3d2 = entity.getViewVector(0);
+        Vec3 vec3d3 = vec3d.add(vec3d2.x * range, vec3d2.y * range, vec3d2.z * range);
+        BlockHitResult blockHit = entity.level().clip(new ClipContext(vec3d, vec3d3, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity));
+        return blockHit;
     }
 
     public float getPivotPoint(Vector3d pointToRotate, Vector3d axisStart, Vector3d axisEnd) {
@@ -3728,7 +3734,12 @@ public class AbilityScapeBasis {
     private int infinite_spin = 0;
     private boolean infinite_spinning = false;
     public int getInfiniteSpin() {return infinite_spin;}
-    public void setInfiniteSpin(int value) {infinite_spin = Mth.clamp(value,0,getMaxInfiniteSpin());}
+    public void setInfiniteSpin(int value) {
+        infinite_spin = Mth.clamp(value,0,getMaxInfiniteSpin());
+        if (infinite_spin == 0) {
+            infinite_spinning = false;
+        }
+    }
     public int getMaxInfiniteSpin() {return 40*20;} // can be overridden for balance etc.
 
     public boolean isInfiniteSpinning() {return infinite_spinning;}

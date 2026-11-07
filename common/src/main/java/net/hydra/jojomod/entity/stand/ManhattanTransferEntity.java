@@ -89,17 +89,12 @@ public class ManhattanTransferEntity extends StandEntity {
                 }
             }
         }
-        return !getBsGrabbed();
+        return getBsGrabbed() == 0;
     }
 
     @Override
     public boolean hasNoPhysics() {
         return false;
-    }
-
-    @Override
-    public boolean isAttackable() {
-        return !getBsGrabbed();
     }
 
     @Override
@@ -225,6 +220,7 @@ public class ManhattanTransferEntity extends StandEntity {
     int knockbackArrow = 0;
     void setKnockbackArrow(int necessary){knockbackArrow = necessary;}
     int piercingArrow = 0;
+    boolean isArrowTooSlow = false;
     public StandUser getUserData(LivingEntity User) {
         return ((StandUser) User);
     }
@@ -275,6 +271,12 @@ public class ManhattanTransferEntity extends StandEntity {
                                         this.setHeldItemManhattan(ii.copyAndClear());
                                         setKnockbackArrow(AA.getKnockback());
                                         piercingArrow = AA.getPierceLevel();
+                                       // System.out.println(AA.getDeltaMovement().length());
+                                        if(AA.getDeltaMovement().length() > 1.5){
+                                            isArrowTooSlow = false;
+                                        } else {
+                                            isArrowTooSlow = true;
+                                        }
                                         AA.discard();
                                     } else if (AA instanceof RoundaboutBulletEntity BE) {
                                         hasItem = true;
@@ -369,6 +371,10 @@ public class ManhattanTransferEntity extends StandEntity {
         return super.hurt(source, amount);
     }
 
+    @Override
+    public float blackSabbathGrabOffset(){
+        return 0.4f;
+    }
 
     public void itemEject() {
         if (hasItem && this.canAcquireHeldItem) {
@@ -440,6 +446,9 @@ public class ManhattanTransferEntity extends StandEntity {
                     $$11.pickup =AbstractArrow.Pickup.CREATIVE_ONLY;
                 }
                 thrower.level().addFreshEntity($$11);
+                if(thrower.isArrowTooSlow) {
+                    ((IAbstractArrowAccess) $$11).roundabout$isArrowTooSlow(true);
+                }
                 ((IAbstractArrowAccess) $$11).roundabout$SetIsManhattan(true);
                 ((IAbstractArrowAccess) $$11).roundabout$setHattanDamage(thrower.manhattanDamageIncipit);
                 $$11.setRemainingFireTicks(thrower.fireTicksPrj);
@@ -1066,6 +1075,10 @@ public class ManhattanTransferEntity extends StandEntity {
         AnimationState leftSlow = this.slow_manhattan_left;
         AnimationState rightSlow = this.slow_manhattan_right;
 
+        if(getBsGrabbed() != 0){
+            loaded.startIfStopped(this.tickCount);
+            return;
+        }
 
         if (this.level().isClientSide) {
             if (!this.isInRain()) {

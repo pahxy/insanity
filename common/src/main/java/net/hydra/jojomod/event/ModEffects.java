@@ -25,7 +25,7 @@ public class ModEffects {
     public static MobEffect CRIPPLED;
     public static MobEffect HALLUCINATION;
     public static MobEffect OLD;
-    public static MobEffect DREAMING;
+    public static MobEffect SLEEPING;
     public static MobEffect REFRESHED;
     public static MobEffect INFINITE_SPIN;
     public static MobEffect FORTIFICATION;
@@ -37,4 +37,6 @@ public class ModEffects {
     public static MobEffect HAZE_VIRUS;
     public static MobEffect DISTORTION_VIRUS;
     public static MobEffect VIRUS_IMMUNITY;
+
+    public static MobEffect RECONSTRUCTION;
 }

@@ -31,7 +31,7 @@ public class AdvancedConfig implements Cloneable {
         SERVER_OINLY_INSTANCE = config;
     }
 
-    public Set<String> standArrowPoolv8 = new HashSet<>(
+    public Set<String> standArrowPoolv9 = new HashSet<>(
             Arrays.asList(
                     "roundabout:star_platinum_disc",
                     "roundabout:the_world_disc",
@@ -43,11 +43,12 @@ public class AdvancedConfig implements Cloneable {
                     "roundabout:king_crimson_disc",
                     "roundabout:ratt_disc",
                     "roundabout:killer_queen_disc",
-                    "roundabout:diver_down_disc"
-                    //"roundabout:green_day_disc"
+                    "roundabout:diver_down_disc",
+                    "roundabout:green_day_disc"
+                    // "roundabout:silver_chariot_disc"
             )
     );
-    public Set<String> standArrowSecondaryPoolv7 = new HashSet<>(
+    public Set<String> standArrowSecondaryPoolv9 = new HashSet<>(
             Arrays.asList(
                     "roundabout:cinderella_disc",
                     "roundabout:hey_ya_disc",
@@ -55,11 +56,12 @@ public class AdvancedConfig implements Cloneable {
                     "roundabout:survivor_disc",
                     "roundabout:achtung_baby_disc",
                     "roundabout:manhattan_transfer_disc",
-                    "roundabout:california_king_bed_disc"
+                    "roundabout:california_king_bed_disc",
+                    "roundabout:lyin_eyes_disc"
                     //"roundabout:20th_century_boy_disc"
             )
     );
-    public Set<String> naturalStandUserMobPoolv11 = new HashSet<>(
+    public Set<String> naturalStandUserMobPoolv12 = new HashSet<>(
             Arrays.asList(
                     "roundabout:star_platinum_disc",
                     "roundabout:the_world_disc",
@@ -75,7 +77,9 @@ public class AdvancedConfig implements Cloneable {
                     "roundabout:manhattan_transfer_disc",
                     "roundabout:california_king_bed_disc",
                     "roundabout:killer_queen_disc",
-                    "roundabout:diver_down_disc"
+                    "roundabout:diver_down_disc",
+                    "roundabout:lyin_eyes_disc"
+                    // "roundabout:silver_chariot_disc"
             )
     );
 
@@ -110,10 +114,11 @@ public class AdvancedConfig implements Cloneable {
 
 
 
-    public Set<String> humanoidOnlyStandUserMobPoolv2 = new HashSet<>(
+    public Set<String> humanoidOnlyStandUserMobPoolv3 = new HashSet<>(
             Arrays.asList(
                     "roundabout:hey_ya_disc",
-                    "roundabout:mandom_disc"
+                    "roundabout:mandom_disc",
+                    "roundabout:lyin_eyes_disc"
                     //"roundabout:20th_century_boy_disc"
             )
     );
@@ -175,7 +180,7 @@ public class AdvancedConfig implements Cloneable {
             )
     );
 
-    public Set<String> purpleHazeDecayBlocksAndRates = new HashSet<>(
+    public Set<String> purpleHazeDecayBlocksAndRatesV2 = new HashSet<>(
             Arrays.asList(
                     "minecraft:grass_block:minecraft:dirt:0.45",
                     "minecraft:mycelium:minecraft:dirt:0.45",
@@ -194,7 +199,7 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:oxeye_daisy:minecraft:air:0.6",
                     "minecraft:cornflower:minecraft:air:0.6",
                     "minecraft:lily_of_the_valley:minecraft:air:0.6",
-                    "minecraft:torch_flower:minecraft:air:0.6",
+                    "minecraft:torchflower:minecraft:air:0.6",
                     "minecraft:sunflower:minecraft:air:0.6",
                     "minecraft:lilac:minecraft:air:0.6",
                     "minecraft:rose_bush:minecraft:air:0.6",
@@ -205,7 +210,7 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:tall_grass:minecraft:air:0.6",
                     "minecraft:large_fern:minecraft:air:0.6",
                     "minecraft:small_dripleaf:minecraft:air:0.6",
-                    "minecraft:red_mushrom:minecraft:air:0.6",
+                    "minecraft:red_mushroom:minecraft:air:0.6",
                     "minecraft:brown_mushroom:minecraft:air:0.6",
                     "minecraft:sugar_cane:minecraft:air:0.6",
                     "minecraft:dead_bush:minecraft:air:0.6",
@@ -244,6 +249,18 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:nether_wart_block:minecraft:air:0.3",
                     "minecraft:warped_wart_block:minecraft:air:0.3",
                     "minecraft:shroomlight:minecraft:air:0.3",
+                    "minecraft:pumpkin:minecraft:air:0.3",
+                    "minecraft:carved_pumpkin:minecraft:air:0.3",
+                    "minecraft:melon:minecraft:air:0.3",
+                    "minecraft:hay_block:minecraft:air:0.3",
+                    "minecraft:cobweb:minecraft:air:0.3",
+                    "minecraft:infested_stone:minecraft:stone:0.3",
+                    "minecraft:infested_cobblestone:minecraft:cobblestone:0.3",
+                    "minecraft:infested_stone_bricks:minecraft:stone_bricks:0.3",
+                    "minecraft:infested_mossy_stone_bricks:minecraft:mossy_stone_bricks:0.3",
+                    "minecraft:infested_cracked_stone_bricks:minecraft:cracked_stone_bricks:0.3",
+                    "minecraft:infested_chiseled_stone_bricks:minecraft:chiseled_stone_bricks:0.3",
+                    "minecraft:infested_deepslate:minecraft:deepslate:0.3",
                     "minecraft:dirt_path:minecraft:farmland:0.3",
                     "minecraft:crying_obsidian:minecraft:obsidian:0.3",
                     "minecraft:warped_nylium:minecraft:netherrack:0.3",
@@ -254,9 +271,25 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:cherry_sapling:minecraft:dead_bush:0.3",
                     "minecraft:dark_oak_sapling:minecraft:dead_bush:0.3",
                     "minecraft:jungle_sapling:minecraft:dead_bush:0.3",
-                    "minecraft:mangrove_sapling:minecraft:dead_bush:0.3",
+                    "minecraft:mangrove_propagule:minecraft:dead_bush:0.3",
                     "minecraft:oak_sapling:minecraft:dead_bush:0.3",
                     "minecraft:spruce_sapling:minecraft:dead_bush:0.3"
+
+            )
+    );
+
+    public Set<String> goldExperienceDropsAndRatesv2 = new HashSet<>(
+            Arrays.asList(
+                    "minecraft:rabbit:minecraft:rabbit:120:adult",
+                    "minecraft:beef:minecraft:cow:2400:baby",
+                    "minecraft:egg:minecraft:chicken:160:adult",
+                    "minecraft:feather:minecraft:parrot:800:adult",
+                    "minecraft:ink_sac:minecraft:squid:800:adult",
+                    "minecraft:glow_ink_sac:minecraft:glow_squid:800:adult",
+                    "minecraft:porkchop:minecraft:pig:2000:baby",
+                    "minecraft:mutton:minecraft:sheep:2400:baby",
+                    "minecraft:goat_horn:minecraft:goat:1500:baby",
+                    "minecraft:scute:minecraft:turtle:1800:baby"
             )
     );
 
@@ -323,6 +356,18 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:yellow_wool:roundabout:wool_slab_yellow"
             )
     );
+    public Set<String> silverChariotStatueMaterialBlocks = new HashSet<>(
+            Arrays.asList(
+                    "minecraft:stone",
+                    "minecraft:andesite",
+                    "minecraft:diorite",
+                    "minecraft:granite",
+                    "minecraft:netherrack",
+                    "minecraft:end_stone",
+                    "minecraft:sandstone",
+                    "minecraft:red_sandstone"
+            )
+    );
 
     public Set<String> standBlockGrabBlacklist = new HashSet<>(
             Arrays.asList(
@@ -330,10 +375,11 @@ public class AdvancedConfig implements Cloneable {
                     "minecraft:ancient_debris"
             )
     );
-    public Set<String> standDisassemblyBlacklistv1 = new HashSet<>(
+    public Set<String> standDisassemblyBlacklistv2 = new HashSet<>(
             Arrays.asList(
                     "roundabout:melon_parfait",
-                    "minecraft:lodestone"
+                    "minecraft:lodestone",
+                    "minecraft:grass_block"
             )
     );
     public Set<String> standBlockExplosionBlacklist = new HashSet<>(

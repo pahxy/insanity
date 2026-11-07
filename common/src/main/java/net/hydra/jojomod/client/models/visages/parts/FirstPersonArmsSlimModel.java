@@ -16,6 +16,7 @@ import net.hydra.jojomod.client.models.PsuedoHierarchicalModel;
 import net.hydra.jojomod.client.models.layers.animations.TuskAnimations;
 import net.hydra.jojomod.event.index.*;
 import net.hydra.jojomod.event.powers.StandUser;
+import net.hydra.jojomod.item.BerettaPistolItem;
 import net.hydra.jojomod.item.ColtRevolverItem;
 import net.hydra.jojomod.item.SnubnoseRevolverItem;
 import net.hydra.jojomod.item.TommyGunItem;
@@ -153,6 +154,14 @@ public class FirstPersonArmsSlimModel<T extends Entity> extends PsuedoHierarchic
                     this.animate(ipe.roundabout$getItemAnimation(), Poses.SNUBNOSE_AIM_LEFT.ad, partialTicks, 1f);
                     this.animate(ipe.roundabout$getItemAnimationActive(), Poses.SNUBNOSE_RECOIL_LEFT.ad, partialTicks, 1f);
                 }
+            } else if (player.getUseItem().getItem() instanceof BerettaPistolItem) {
+                if (mainHandRight) {
+                    this.animate(ipe.roundabout$getItemAnimation(), Poses.SNUBNOSE_AIM.ad, partialTicks, 1f);
+                    this.animate(ipe.roundabout$getItemAnimationActive(), Poses.SNUBNOSE_RECOIL.ad, partialTicks, 1f);
+                } else {
+                    this.animate(ipe.roundabout$getItemAnimation(), Poses.SNUBNOSE_AIM_LEFT.ad, partialTicks, 1f);
+                    this.animate(ipe.roundabout$getItemAnimationActive(), Poses.SNUBNOSE_RECOIL_LEFT.ad, partialTicks, 1f);
+                }
             }
             EntityRenderDispatcher $$7 = Minecraft.getInstance().getEntityRenderDispatcher();
             EntityRenderer<? super T> P = $$7.getRenderer(player);
@@ -190,15 +199,15 @@ public class FirstPersonArmsSlimModel<T extends Entity> extends PsuedoHierarchic
                     this.animate(standUser.roundabout$getWornStandIdleAnimation(),anim,partialTicks,1F);
                 }
                 if (standUser.roundabout$getStandPowers() instanceof Powers20thCenturyBoy PCB && PowerTypes.isUsingStand(player)){
-                    if (PCB.invincibleState){
+                    AnimationDefinition anim = PCB.getAnimation(standUser, true);
+                    //if (PCB.invincibleState){
 
-                        AnimationDefinition anim = PCB.getAnimation(standUser, true);
-                        if (standUser.roundabout$getStandAnimation() == PowerIndex.NONE) {
-                            standUser.roundabout$getWornStandAnimation().startIfStopped(player.tickCount);
-                        }
-                        this.animate(standUser.roundabout$getWornStandAnimation(),anim,partialTicks,1F);
+                    //if (standUser.roundabout$getStandAnimation() == PowerIndex.NONE) {
+                    standUser.roundabout$getWornStandAnimation().animateWhen(anim!=null, player.tickCount);
+                    this.animate(standUser.roundabout$getWornStandAnimation(),anim,partialTicks,1F);
+                    //}
 
-                    }
+
                 }
 
                 Mob shapeShift = ((IPlayerRenderer)PR).roundabout$getShapeShift(player);

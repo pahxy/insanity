@@ -147,6 +147,8 @@ public interface StandUser {
     void roundabout$setOasisVanishTicks(int set);
     int roundabout$getDiverDownVanishTicks();
     void roundabout$setDiverDownVanishTicks(int set);
+    int roundabout$getCatchTheRainbowVanishTicks();
+    void roundabout$setCatchTheRainbowVanishTicks(int set);
 
     int getJumpImmunityTicks();
 
@@ -174,6 +176,7 @@ public interface StandUser {
 
     void roundabout$sealStand(int ticks);
 
+    void roundabout$setSealedTicksAgnostic(int ticks);
     void roundabout$setSealedTicks(int ticks);
     void roundabout$setSealedTicks(int ticks, int maxticks);
     int roundabout$getSealedTicks();
@@ -316,8 +319,12 @@ public interface StandUser {
     void roundabout$setLocacacaCurse(byte locacacaCurse);
     byte roundabout$getLocacacaCurse();
 
+    /**Slack Babbath*/
     void roundabout$setGrabbedSoul(boolean grabbedSoul);
     boolean roundabout$getGrabbedSoul();
+
+    void roundabout$setGrabberSabbath(int grabbedSoul);
+    int roundabout$getGrabberSabbath();
 
     byte roundabout$getStandSkin();
     byte roundabout$getLastStandSkin();
@@ -402,6 +409,8 @@ public interface StandUser {
 
     @Nullable PowersDiverDown rdbt$getRibcagePlacer();
     void rdbt$setRibcagePlacer(@Nullable PowersDiverDown e);
+    @Nullable PowersDiverDown rdbt$getSpringPlacer();
+    void rdbt$setSpringPlacer(@Nullable PowersDiverDown e);
 
     List<CooldownInstance> rdbt$initPowerCooldowns();
     List<CooldownInstance> rdbt$getPowerCooldowns();
@@ -422,6 +431,11 @@ public interface StandUser {
     void roundabout$setRibcageTrap(boolean trap);
     boolean roundabout$hasSpringLegs();
     void roundabout$setSpringLegs(boolean legs);
+    /// dw about these, I'm not sure if I'll use them yet
     boolean roundabout$hasInfiniteSpin();
     void roundabout$clearInfiniteSpin();
+
+    /** catch the rainbow **/
+    boolean roundabout$getIsRainWalking();
+    void roundabout$setIsRainWalking(boolean bool);
 }

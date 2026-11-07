@@ -144,7 +144,7 @@ public class RattEntity extends StandEntity {
     }
     @Override
     public boolean hasNoPhysics(){
-        return getBsGrabbed();
+        return getBsGrabbed() != 0;
     }
 
     @Override
@@ -237,11 +237,14 @@ public class RattEntity extends StandEntity {
         return super.changeDimension($$0);
     }
 
-
+    @Override
+    public float blackSabbathGrabOffset(){
+        return 0.75f;
+    }
     @Override
     public void knockback(double $$0, double $$1, double $$2) {}
     @Override
-    public boolean isAttackable() {return !getBsGrabbed();}
+    public boolean isAttackable() {return getBsGrabbed() == 0;}
     @Override
     public boolean isPickable() {return true;}
     @Override

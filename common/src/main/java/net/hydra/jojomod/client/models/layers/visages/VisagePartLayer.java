@@ -23,10 +23,7 @@ import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.event.powers.visagedata.VisageData;
 import net.hydra.jojomod.item.MaskItem;
 import net.hydra.jojomod.item.ModItems;
-import net.hydra.jojomod.stand.powers.Powers20thCenturyBoy;
-import net.hydra.jojomod.stand.powers.PowersOasis;
-import net.hydra.jojomod.stand.powers.PowersWalkingHeart;
-import net.hydra.jojomod.stand.powers.PowersWhiteAlbum;
+import net.hydra.jojomod.stand.powers.*;
 import net.hydra.jojomod.util.HeatUtil;
 import net.hydra.jojomod.util.MainUtil;
 import net.minecraft.client.Minecraft;
@@ -231,6 +228,16 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                         VisageData vd = MI.visageData.generateVisageData(entity);
                         String path = vd.getSkinPath();
                         boolean isHoldingBowlerHat = (hand.getItem() instanceof BowlerHatItem) || (offHand.getItem() instanceof BowlerHatItem);
+
+                        boolean hasCTRactive = false;
+
+                        if (((StandUser) entity).roundabout$getStandPowers() instanceof PowersCatchTheRainbow pctr){
+                           if (pctr.hasStandActive(entity)){
+                               hasCTRactive = true;
+                           }else{
+                               hasCTRactive = false;
+                           }
+                        }
                         /*
                         VisageRenderContext renderContext = new VisageRenderContext(entity, partialTicks);
 
@@ -259,6 +266,21 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                             renderBigHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
+                        if (vd.rendersExtraHair() && !isHoldingBowlerHat && !isBodyFrozen
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
+                            renderExtraHairPart(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
+                                    r, g, b);
+                        }
+                        if (vd.rendersExtraHairDetails() && !isHoldingBowlerHat && !isBodyFrozen
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
+                            renderExtraHairDecorationPart(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
+                                    r, g, b);
+                        }
+                        if (vd.rendersOyecomovaHat() && !isHoldingBowlerHat && !isBodyFrozen
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
+                            renderOyecomovaHatPart(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
+                                    r, g, b);
+                        }
                         if (vd.rendersLucyHair() && !isBodyFrozen && !hideExtraPartsWithSuit) {
                             renderLucyHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
@@ -269,46 +291,51 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                             renderDiegoRightLeg(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
-                        if (vd.rendersDoppioHair() && !isBodyFrozen && !hideExtraPartsWithSuit) {
+                        if (vd.rendersDoppioHair() && !isBodyFrozen && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderDoppioHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
-                        if (vd.rendersKosakuHair() && !isBodyFrozen && !hideExtraPartsWithSuit && !isHoldingBowlerHat) {
+                        if (vd.rendersKosakuHair() && !isBodyFrozen && !hideExtraPartsWithSuit && !isHoldingBowlerHat && !hasCTRactive) {
                             renderKosakuHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersKakyoinHair() && !isHoldingBowlerHat && !isBodyFrozen
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderKakyoinHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersDiegoHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderDiegoHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersDiego2Hat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderDiego2Hat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersGyroHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderGyroHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersAnakissHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderAnakissHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
-                        if (vd.rendersSchoolHat() && !isBodyFrozen /*&& !MainUtil.isWearingEitherStoneMask(entity)*/ && !isHoldingBowlerHat
+                        if (vd.rendersBlackmorePonytail() && !isBodyFrozen && !isHoldingBowlerHat
                                 && !hideExtraPartsWithSuit) {
+                            renderBlackmorePonytail(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
+                                    r, g, b);
+                        }
+                        if (vd.rendersSchoolHat() && !isBodyFrozen /*&& !MainUtil.isWearingEitherStoneMask(entity)*/ && !isHoldingBowlerHat
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderSchoolHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersDaiyaEars() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderDaiyaEars(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
@@ -328,27 +355,27 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                                     r, g, b);
                         }
                         if (vd.rendersSpeedwagonFoundationHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderSpeedwagonFoundationHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersBasicHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderBasicHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersSheriffHat() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderSheriffHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersSpikeyHair() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderSpikeyHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersDotHanHair() && !isBodyFrozen && !MainUtil.isWearingEitherStoneMask(entity) && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderDotHanHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
@@ -359,6 +386,10 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                         }
                         if (vd.rendersJosukeDecals() && !isBodyFrozen) {
                             renderJosukeDecals(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
+                                    r, g, b);
+                        }
+                        if (vd.rendersPolnareffDecals() && !isBodyFrozen) {
+                            renderPolnareffDecals(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersDaiyaFluff() && !isBodyFrozen) {
@@ -384,12 +415,12 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                             }
                         }
                         if (vd.rendersTasselHat() && !isBodyFrozen && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderTasselHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
                         if (vd.rendersTimHat() && !isBodyFrozen && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             rendersTimHat(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
@@ -402,7 +433,7 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                                     r, g, b);
                         }
                         if (vd.rendersAvdolHairPart() && !isBodyFrozen && !isHoldingBowlerHat
-                                && !hideExtraPartsWithSuit) {
+                                && !hideExtraPartsWithSuit && !hasCTRactive) {
                             renderAvdolHair(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks, path,
                                     r, g, b);
                         }
@@ -414,7 +445,7 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                             renderSmallPlayerBreastPart(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks,
                                     r, g, b);
                         }
-                        if(vd.renderJohngalliaHair() && !hideExtraPartsWithSuit){
+                        if(vd.renderJohngalliaHair() && !hideExtraPartsWithSuit && !hasCTRactive){
                             renderJohngalliaHairPart(poseStack, bufferSource, packedLight, entity, xx, yy, zz, partialTicks,
                                     r, g, b);
                         }
@@ -865,6 +896,15 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                 r, g, b, 1, path);
         ClientUtil.popPoseAndCooperate(poseStack,36);
     }
+    public void renderBlackmorePonytail(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float xx, float yy, float zz, float partialTicks, String path,
+                                 float r, float g, float b) {
+
+        ClientUtil.pushPoseAndCooperate(poseStack,36);
+        getParentModel().head.translateAndRotate(poseStack);
+        ModStrayModels.blackmorePonytailPart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
+                r, g, b, 1, path);
+        ClientUtil.popPoseAndCooperate(poseStack,36);
+    }
     public void renderSchoolHat(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float xx, float yy, float zz, float partialTicks, String path,
                               float r, float g, float b) {
 
@@ -1272,6 +1312,15 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
                 r, g, b, 1, path);
         ClientUtil.popPoseAndCooperate(poseStack,40);
     }
+    public void renderPolnareffDecals(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float xx, float yy, float zz, float partialTicks, String path,
+                                 float r, float g, float b) {
+
+        ClientUtil.pushPoseAndCooperate(poseStack,40);
+        getParentModel().body.translateAndRotate(poseStack);
+        ModStrayModels.polnareffDecalsPart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
+                r, g, b, 1, path);
+        ClientUtil.popPoseAndCooperate(poseStack,40);
+    }
     public void renderRatTail(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float xx, float yy, float zz, float partialTicks, String path,
                                    float r, float g, float b) {
 
@@ -1439,5 +1488,33 @@ public class VisagePartLayer<T extends LivingEntity, A extends HumanoidModel<T>>
         ModStrayModels.JohngalliaTiePart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
                 r, g, b, 1, "johngallia");
         ClientUtil.popPoseAndCooperate(poseStack,47);
+    }
+
+    public void  renderExtraHairPart(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity,
+                                     float xx, float yy, float zz, float partialTicks, String path,
+                                         float r, float g, float b) {
+        ClientUtil.pushPoseAndCooperate(poseStack,48);
+        getParentModel().head.translateAndRotate(poseStack);
+        ModStrayModels.extraHairPart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
+                r, g, b, 1, path);
+        ClientUtil.popPoseAndCooperate(poseStack,48);
+    }
+    public void  renderExtraHairDecorationPart(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity,
+                                     float xx, float yy, float zz, float partialTicks, String path,
+                                         float r, float g, float b) {
+        ClientUtil.pushPoseAndCooperate(poseStack,49);
+        getParentModel().head.translateAndRotate(poseStack);
+        ModStrayModels.extraHairDecorationPart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
+                r, g, b, 1, path);
+        ClientUtil.popPoseAndCooperate(poseStack,49);
+    }
+    public void  renderOyecomovaHatPart(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity,
+                                     float xx, float yy, float zz, float partialTicks, String path,
+                                         float r, float g, float b) {
+        ClientUtil.pushPoseAndCooperate(poseStack,49);
+        getParentModel().head.translateAndRotate(poseStack);
+        ModStrayModels.oyecomovaHatPart.render(entity, partialTicks, poseStack, bufferSource, packedLight,
+                r, g, b, 1, path);
+        ClientUtil.popPoseAndCooperate(poseStack,49);
     }
 }

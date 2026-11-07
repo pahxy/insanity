@@ -31,6 +31,7 @@ public class ModBlocks {
      **/
     public static final EnumProperty<GoddessStatuePart> GODDESS_STATUE_PART = EnumProperty.create("part", GoddessStatuePart.class);
     public static final EnumProperty<StreetSignPart> STREET_SIGN_PART = EnumProperty.create("part", StreetSignPart.class);
+    public static final EnumProperty<MagiciansStatuePart> MAGICIANS_STATUE_PART = EnumProperty.create("part", MagiciansStatuePart.class);
     public static final IntegerProperty DAMAGED = IntegerProperty.create("damaged", 0, 2);
     public static final IntegerProperty GAS_CAN_LEVEL = IntegerProperty.create("level", 0, 2);
     public static final IntegerProperty BLOOD_LEVEL = IntegerProperty.create("level", 0, 3);
@@ -120,6 +121,7 @@ public class ModBlocks {
     public static Block BARBED_WIRE;
     public static Block BARBED_WIRE_BUNDLE;
     public static Block GODDESS_STATUE_BLOCK;
+    public static Block MAGICIANS_STATUE_BLOCK;
     public static Block STREET_SIGN_DIO;
     public static Block STREET_SIGN_RIGHT;
     public static Block STREET_SIGN_STOP;
@@ -139,6 +141,9 @@ public class ModBlocks {
     public static Block MINING_ALERT_BLOCK;
     public static Block BUBBLE_SCAFFOLD;
     public static Block DIVER_LIMB;
+    public static Block SC_RAPIER_PLATFORM;
+    public static Block GE_BUSH;
+    public static Block GE_VINE;
     public static Block INVISIBLOCK;
     public static Block D4C_PORTAL;
 
@@ -214,6 +219,8 @@ public class ModBlocks {
     public static BlockEntityType<MirrorBlockEntity> MIRROR_BLOCK_ENTITY;
     public static BlockEntityType<BubbleScaffoldBlockEntity> BUBBLE_SCAFFOLD_BLOCK_ENTITY;
     public static BlockEntityType<DiverLimbBlockEntity> DIVER_LIMB_BLOCK_ENTITY;
+    public static BlockEntityType<SilverChariotRapierPlatformBlockEntity> SC_RAPIER_PLATFORM_BLOCK_ENTITY;
+    public static BlockEntityType<GEBushBlockEntity> GE_BUSH_BLOCK_ENTITY;
     public static BlockEntityType<InvisiBlockEntity> INVISIBLE_BLOCK_ENTITY;
     public static BlockEntityType<D4CPortalBlockEntity> D4C_PORTAL_BLOCK_ENTITY;
     public static BlockEntityType<CoffinBlockEntity> COFFIN_BLOCK_ENTITY;
@@ -689,6 +696,16 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops()
     );
+    public static MagiciansStatueBlock MAGICIANS_STATUE_BLOCK_PROPERTIES = new MagiciansStatueBlock(
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .noOcclusion()
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .pushReaction(PushReaction.DESTROY)
+                    .strength(1.5F, 1.0F)
+                    .sound(SoundType.STONE)
+                    .requiresCorrectToolForDrops()
+    );
 
     public static StreetSignBlock getStreetSignBlockProperties() {
         return new StreetSignBlock(
@@ -839,11 +856,23 @@ public class ModBlocks {
             BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).noCollission().dynamicShape().speedFactor(0.7F).replaceable().instabreak().lightLevel((p_152607_) -> {
                 return 1;
             }).noParticlesOnBreak().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY));
-        //copying the bubble scaffold code for diver down's limb, but removing the speed reducer since the tradeoff is that you're only limited to 4, and it's only placable on walls/floor.
-        public static DiverLimbBlock DIVER_LIMB_BLOCK_PROPERTIES = new DiverLimbBlock(
+    //copying the bubble scaffold code for diver down's limb, but removing the speed reducer since the tradeoff is that you're only limited to 4, and it's only placable on walls/floor.
+    public static DiverLimbBlock DIVER_LIMB_BLOCK_PROPERTIES = new DiverLimbBlock(
             BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).noCollission().dynamicShape().instabreak().lightLevel((p_152607_) -> {
                 return 1;
             }).noParticlesOnBreak().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY));
+    public static SilverChariotRapierPlatformBlock SC_RAPIER_PLATFORM_BLOCK_PROPERTIES = new SilverChariotRapierPlatformBlock(
+            BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).noCollission().dynamicShape().instabreak().lightLevel((p_152607_) -> {
+                return 1;
+            }).noParticlesOnBreak().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY));
+    public static GEBushBlock GE_BUSH_BLOCK_PROPERTIES = new GEBushBlock(
+            BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .strength(0.4F)
+                    .noLootTable()
+                    .sound(SoundType.SWEET_BERRY_BUSH)
+                    .pushReaction(PushReaction.DESTROY));
+    public static GEVineBlock GE_VINE_PROPERTIES = new GEVineBlock(BlockBehaviour.Properties.copy(Blocks.VINE));
     public static StandFireBlock STAND_FIRE_PROPERTIES = new StandFireBlock(
             BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).replaceable().noCollission().instabreak().lightLevel((p_152607_) -> {
                 return 15;

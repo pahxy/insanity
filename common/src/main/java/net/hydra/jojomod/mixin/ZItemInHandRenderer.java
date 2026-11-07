@@ -19,6 +19,7 @@ import net.hydra.jojomod.event.index.PowerTypes;
 import net.hydra.jojomod.event.powers.StandPowers;
 import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.item.*;
+import net.hydra.jojomod.stand.powers.Powers20thCenturyBoy;
 import net.hydra.jojomod.stand.powers.PowersEmperor;
 import net.hydra.jojomod.stand.powers.PowersGreenDay;
 import net.hydra.jojomod.stand.powers.PowersRatt;
@@ -241,6 +242,11 @@ public abstract class ZItemInHandRenderer {
             return;
         }
 
+        if (((StandUser)abstractClientPlayer).roundabout$getStandPowers() instanceof Powers20thCenturyBoy PCB && PCB.invincibleState) {
+            ci.cancel();
+            return;
+        }
+
         if (ClientUtil.isRenderingFlag(abstractClientPlayer)) {
 
             ItemStack renderedStack = this.mainHandItem;
@@ -258,6 +264,20 @@ public abstract class ZItemInHandRenderer {
         }
 
         StandUser standUser = (StandUser) abstractClientPlayer;
+
+        if (standUser.roundabout$getStandPowers() instanceof PowersGreenDay) {
+            if (!((PowersGreenDay)standUser.roundabout$getStandPowers()).HasMainArm && interactionHand == InteractionHand.MAIN_HAND){
+                ci.cancel();
+                return;
+            }
+        }
+
+        if (standUser.roundabout$getStandPowers() instanceof PowersGreenDay) {
+            if (!((PowersGreenDay)standUser.roundabout$getStandPowers()).HasOffHand && interactionHand == InteractionHand.OFF_HAND){
+                ci.cancel();
+                return;
+            }
+        }
 
         boolean emperorFP =
                 standUser.roundabout$getStandPowers() instanceof PowersEmperor

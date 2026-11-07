@@ -26,6 +26,7 @@ import net.hydra.jojomod.event.index.OffsetIndex;
 import net.hydra.jojomod.event.index.PowerIndex;
 import net.hydra.jojomod.event.index.PowerTypes;
 import net.hydra.jojomod.event.index.SoundIndex;
+import net.hydra.jojomod.event.powers.ModDamageTypes;
 import net.hydra.jojomod.event.powers.StandPowers;
 
 import net.hydra.jojomod.event.powers.StandUser;
@@ -397,6 +398,24 @@ public class PowersGreenDay extends NewPunchingStand {
         return super.setPowerOther(move, lastMove);
     }
 
+
+
+    public SoundEvent getPunchLandSound(){
+        return ModSounds.GREEN_DAY_PUNCH_EVENT;
+    }
+    public SoundEvent getPunchLandLastSound(){
+        return ModSounds.GREEN_DAY_HEAVY_PUNCH_EVENT;
+    }
+
+
+    @Override
+    public void playBarrageNoise(int hitNumber, Entity entity) {
+        if (!this.self.level().isClientSide()) {
+            if (hitNumber % 2 == 0)
+                playSoundIfPossible(self.level(), null, this.self.blockPosition(), ModSounds.GREEN_DAY_BARRAGE_HIT_EVENT, SoundSource.PLAYERS, 0.7F, 1/*(float) (0.9 + (Math.random() * 0.25))*/);
+        }
+    }
+
     public boolean hasCheckedAllies = false;
 
 
@@ -411,7 +430,13 @@ public class PowersGreenDay extends NewPunchingStand {
                     if(this.self.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof AirItem){
                         this.self.setItemInHand(InteractionHand.OFF_HAND,OffhandItemToReturn);
                     }else {
-                        this.self.spawnAtLocation(OffhandItemToReturn);
+                        ItemEntity $$4 = new ItemEntity(this.getSelf().level(), this.getSelf().getX(),
+                                this.getSelf().getY() + this.getSelf().getEyeHeight(), this.getSelf().getZ(),
+                                OffhandItemToReturn);
+                        $$4.setPickUpDelay(1);
+                        $$4.setThrower(this.getSelf().getUUID());
+                        PowerTypes.copyPlaneOfExisting(self,$$4);
+                        this.getSelf().level().addFreshEntity($$4);
                     }
                     OffhandItemToReturn = null;
                 }
@@ -604,6 +629,7 @@ public class PowersGreenDay extends NewPunchingStand {
 
     private boolean serverToggleMold(){
         MoldGone = true;
+        setCooldown(PowerIndex.SKILL_4,ClientNetworking.getAppropriateConfig().greenDaySettings.moldSpreadForceCooldown);
         (self.level()).playSound(self,self.getOnPos(),ModSounds.SNAP_EVENT,SoundSource.PLAYERS,1,1);
         return true;
     }
@@ -766,7 +792,7 @@ public class PowersGreenDay extends NewPunchingStand {
 
     }
     public void attemptMainArmSpin(){
-        if(canExecuteMoveWithLevel(3)) {
+        if(canExecuteMoveWithLevel(5)) {
             MainArmSpin();
         }
 
@@ -1224,7 +1250,13 @@ public class PowersGreenDay extends NewPunchingStand {
             if (this.self.getMainHandItem().getItem() instanceof AirItem) {
                 this.self.setItemInHand(InteractionHand.MAIN_HAND, Main_arm.getMainHandItem());
             } else {
-                this.self.spawnAtLocation(Main_arm.getMainHandItem());
+                ItemEntity $$4 = new ItemEntity(this.getSelf().level(), this.getSelf().getX(),
+                        this.getSelf().getY() + this.getSelf().getEyeHeight(), this.getSelf().getZ(),
+                        Main_arm.getHeldItem());
+                $$4.setPickUpDelay(1);
+                $$4.setThrower(this.getSelf().getUUID());
+                PowerTypes.copyPlaneOfExisting(self,$$4);
+                this.getSelf().level().addFreshEntity($$4);
             }
             //this.self.spawnAtLocation(Main_arm.getMainHandItem());
             Main_arm.setUser(null);
@@ -1790,20 +1822,49 @@ public class PowersGreenDay extends NewPunchingStand {
         }
     }
 
+    @Override
+    public void tickStandRejection(MobEffectInstance effect) {
+        if (!this.self.level().isClientSide) {
+            ((ServerLevel)this.self.level()).sendParticles(ModParticles.MOLD_DUST,
+                    this.self.getX(),
+                    this.self.getY(),
+                    this.self.getZ(),
+                    4, 2, 2, 2, 0.005);
+            ((ServerLevel)this.self.level()).sendParticles(new DustParticleOptions(new Vector3f(0.76F, 1.0F, 0.9F), 2f),
+                    this.self.getX(),
+                    this.self.getY(),
+                    this.self.getZ(),
+                    1, 2, 2, 2, 0.005);
+            Entity entity = this.self;
+            float fallDistance = (((StandUser) entity).getStaringYPos() - (float) entity.getPosition(1).y());
+
+            double width = entity.getBbWidth() / 2;
+            double height = entity.getBbHeight() / 2;
+            ((ServerLevel) this.self.level()).sendParticles(ModParticles.MOLD
+                    , entity.getX(),
+                    (entity.getY() + height / 2),
+                    entity.getZ(),
+                    13, width, height, width, 0)
+            ;
+
+            double damage = 0;
+            if (MainUtil.getReducedDamage(entity)) {
+                damage = 2;
+            } else {
+                damage = 4;
+            }
+            damage = (int) (damage * (fallDistance * 0.6F));
+            if (((StandUser) entity).getStaringYPos() - entity.getY() < 1) {
+                damage = damage * 0.25;
+            }
+            entity.hurt(ModDamageTypes.of(this.self.level(), ModDamageTypes.DISINTEGRATION), (float) (damage * (ClientNetworking.getAppropriateConfig().greenDaySettings.moldDMGPlayersMultiplier / 100F)));
+        }
+    }
 
     @Override
     public boolean isWip(){
-        return true;
+        return false;
     }
-    @Override
-    public Component ifWipListDevStatus(){
-        return Component.translatable(  "roundabout.dev_status.active").withStyle(ChatFormatting.GOLD);
-    }
-    @Override
-    public Component ifWipListDev(){
-        return Component.literal(  "Fish").withStyle(ChatFormatting.GREEN);
-    }
-
 
     public static final byte
             PART_FIVE_GREEN_DAY = 1,

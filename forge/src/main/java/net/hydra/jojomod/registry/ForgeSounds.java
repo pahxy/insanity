@@ -253,6 +253,11 @@ public class ForgeSounds {
     public static final RegistryObject<SoundEvent> JACKAL_RELOAD_EVENT =
             register(ModSounds.JACKAL_RELOAD, ModSounds.JACKAL_RELOAD_ID);
 
+    public static final RegistryObject<SoundEvent> BERETTA_FIRE_EVENT =
+            register(ModSounds.BERETTA_FIRE, ModSounds.BERETTA_FIRE_ID);
+    public static final RegistryObject<SoundEvent> BERETTA_RELOAD_EVENT =
+            register(ModSounds.BERETTA_RELOAD, ModSounds.BERETTA_RELOAD_ID);
+
     public static final RegistryObject<SoundEvent> BULLET_PENTRATION_EVENT =
             register(ModSounds.BULLET_PENTRATION, ModSounds.BULLET_PENTRATION_ID);
     public static final RegistryObject<SoundEvent> BULLET_RICOCHET_EVENT =
@@ -349,6 +354,8 @@ public class ForgeSounds {
             register(ModSounds.STAND_BARRAGE_END_BLOCK, ModSounds.STAND_BARRAGE_END_BLOCK_ID);
     public static final RegistryObject<SoundEvent> KILLER_QUEEN_IMPALE_EVENT =
             register(ModSounds.KILLER_QUEEN_IMPALE, ModSounds.KILLER_QUEEN_IMPALE_ID);
+    public static final RegistryObject<SoundEvent> KILLER_QUEEN_BARRAGE_HIT_EVENT =
+            register(ModSounds.KILLER_QUEEN_BARRAGE_HIT, ModSounds.KILLER_QUEEN_BARRAGE_HIT_ID);
     public static final RegistryObject<SoundEvent> KILLER_QUEEN_PUNCH_EVENT =
             register(ModSounds.KILLER_QUEEN_PUNCH, ModSounds.KILLER_QUEEN_PUNCH_ID);
     public static final RegistryObject<SoundEvent> KILLER_QUEEN_HEAVY_PUNCH_EVENT =
@@ -453,13 +460,6 @@ public class ForgeSounds {
             register(ModSounds.KILLER_QUEEN_SUMMON_DARK, ModSounds.KILLER_QUEEN_SUMMON_DARK_ID);
     public static final RegistryObject<SoundEvent> KILLER_QUEEN_EXPLOSION_EVENT =
             register(ModSounds.KILLER_QUEEN_EXPLOSION, ModSounds.KILLER_QUEEN_EXPLOSION_ID);
-
-    public static final RegistryObject<SoundEvent> KILLER_QUEEN_EXPLOSION_1_EVENT =
-            register(ModSounds.KILLER_QUEEN_EXPLOSION_1, ModSounds.KILLER_QUEEN_EXPLOSION_1_ID);
-    public static final RegistryObject<SoundEvent> KILLER_QUEEN_EXPLOSION_2_EVENT =
-            register(ModSounds.KILLER_QUEEN_EXPLOSION_2, ModSounds.KILLER_QUEEN_EXPLOSION_2_ID);
-    public static final RegistryObject<SoundEvent> KILLER_QUEEN_EXPLOSION_3_EVENT =
-            register(ModSounds.KILLER_QUEEN_EXPLOSION_3, ModSounds.KILLER_QUEEN_EXPLOSION_3_ID);
 
     public static final RegistryObject<SoundEvent> KILLER_QUEEN_DETONATE_EVENT =
             register(ModSounds.KILLER_QUEEN_DETONATE, ModSounds.KILLER_QUEEN_DETONATE_ID);
@@ -1130,10 +1130,27 @@ public class ForgeSounds {
     public static final RegistryObject<SoundEvent> LYIN_EYES_GATHER =
             register(ModSounds.LYIN_EYES_GATHER, ModSounds.LYIN_EYES_GATHER_ID);
 
+    public static final RegistryObject<SoundEvent> SUMMON_GOLD_EXPERIENCE =
+            register(ModSounds.SUMMON_GOLD_EXPERIENCE, ModSounds.SUMMON_GOLD_EXPERIENCE_ID);
+    public static final RegistryObject<SoundEvent> GOLD_EXPERIENCE_HIT =
+            register(ModSounds.GOLD_EXPERIENCE_HIT, ModSounds.GOLD_EXPERIENCE_HIT_ID);
+    public static final RegistryObject<SoundEvent> GOLD_EXPERIENCE_LIFE_CREATION =
+            register(ModSounds.GOLD_EXPERIENCE_LIFE_CREATION, ModSounds.GOLD_EXPERIENCE_LIFE_CREATION_ID);
+    public static final RegistryObject<SoundEvent> GOLD_EXPERIENCE_LIFE_PUNCH_WINDUP =
+            register(ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_WINDUP, ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_WINDUP_ID);
+    public static final RegistryObject<SoundEvent> GOLD_EXPERIENCE_LIFE_PUNCH =
+            register(ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH, ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_ID);
+
     public static final RegistryObject<SoundEvent> SUMMON_GREEN_DAY =
             register(ModSounds.SUMMON_GREEN_DAY, ModSounds.SUMMON_GREEN_DAY_ID);
     public static final RegistryObject<SoundEvent> GREEN_DAY_SPIN =
             register(ModSounds.GREEN_DAY_ARM_SPIN, ModSounds.GREEN_DAY_ARM_SPIN_ID);
+    public static final RegistryObject<SoundEvent> GREEN_DAY_PUNCH =
+            register(ModSounds.GREEN_DAY_PUNCH, ModSounds.GREEN_DAY_PUNCH_ID);
+    public static final RegistryObject<SoundEvent> GREEN_DAY_HEAVY_PUNCH =
+            register(ModSounds.GREEN_DAY_HEAVY_PUNCH, ModSounds.GREEN_DAY_HEAVY_PUNCH_ID);
+    public static final RegistryObject<SoundEvent> GREEN_DAY_BARRAGE_HIT =
+            register(ModSounds.GREEN_DAY_BARRAGE_HIT, ModSounds.GREEN_DAY_BARRAGE_HIT_ID);
     public static final RegistryObject<SoundEvent> GREEN_DAY_SPLIT =
             register(ModSounds.GREEN_DAY_SPLIT, ModSounds.GREEN_DAY_SPLIT_ID);
     public static final RegistryObject<SoundEvent> GREEN_DAY_MOLD_SPREAD =
@@ -1217,6 +1234,10 @@ public class ForgeSounds {
             register(ModSounds.BC_HELICOPTER_SUMMON, ModSounds.BC_HELICOPTER_SUMMON_ID);
     public static final RegistryObject<SoundEvent> BC_TANK_SUMMON =
             register(ModSounds.BC_TANK_SUMMON, ModSounds.BC_TANK_SUMMON_ID);
+    public static final RegistryObject<SoundEvent> BC_PARACHUTE_OPEN =
+            register(ModSounds.BC_PARACHUTE_OPEN, ModSounds.BC_PARACHUTE_OPEN_ID);
+    public static final RegistryObject<SoundEvent> BC_PARACHUTE_LOOP =
+            register(ModSounds.BC_PARACHUTE_LOOP, ModSounds.BC_PARACHUTE_LOOP_ID);
 
     public static final RegistryObject<SoundEvent> PLANET_WAVES_SUMMON =
             register(ModSounds.PLANET_WAVES_SUMMON, ModSounds.PLANET_WAVES_SUMMON_ID);
@@ -1233,10 +1254,47 @@ public class ForgeSounds {
             register(ModSounds.PURPLE_HAZE_SUMMON, ModSounds.PURPLE_HAZE_SUMMON_ID);
     public static final RegistryObject<SoundEvent> PURPLE_HAZE_BARRAGE_CRY =
             register(ModSounds.PURPLE_HAZE_BARRAGE_CRY, ModSounds.PURPLE_HAZE_BARRAGE_CRY_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_KICK_BARRAGE_CRY =
+            register(ModSounds.PURPLE_HAZE_KICK_BARRAGE_CRY, ModSounds.PURPLE_HAZE_KICK_BARRAGE_CRY_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_HEAVY_PUNCH =
+            register(ModSounds.PURPLE_HAZE_HEAVY_PUNCH, ModSounds.PURPLE_HAZE_HEAVY_PUNCH_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_PUNCH =
+            register(ModSounds.PURPLE_HAZE_PUNCH, ModSounds.PURPLE_HAZE_PUNCH_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_BARRAGE_HIT =
+            register(ModSounds.PURPLE_HAZE_BARRAGE_HIT, ModSounds.PURPLE_HAZE_BARRAGE_HIT_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_BARRAGE_FINISHER =
+            register(ModSounds.PURPLE_HAZE_BARRAGE_FINISHER, ModSounds.PURPLE_HAZE_BARRAGE_FINISHER_ID);
     public static final RegistryObject<SoundEvent> PURPLE_HAZE_SMOKE=
             register(ModSounds.PURPLE_HAZE_SMOKE, ModSounds.PURPLE_HAZE_SMOKE_ID);
     public static final RegistryObject<SoundEvent> PURPLE_HAZE_DISTORTION_SMOKE =
             register(ModSounds.PURPLE_HAZE_DISTORTION_SMOKE, ModSounds.PURPLE_HAZE_DISTORTION_SMOKE_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_POD_BITE =
+            register(ModSounds.PURPLE_HAZE_POD_BITE, ModSounds.PURPLE_HAZE_POD_BITE_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_POD_LAUNCH =
+                register(ModSounds.PURPLE_HAZE_POD_LAUNCH, ModSounds.PURPLE_HAZE_POD_LAUNCH_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_SWITCH_POD =
+                register(ModSounds.PURPLE_HAZE_SWITCH_POD, ModSounds.PURPLE_HAZE_SWITCH_POD_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_STRANGLE_START =
+                register(ModSounds.PURPLE_HAZE_STRANGLE_START, ModSounds.PURPLE_HAZE_STRANGLE_START_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_STRANGLE_GRAB =
+                register(ModSounds.PURPLE_HAZE_STRANGLE_GRAB, ModSounds.PURPLE_HAZE_STRANGLE_GRAB_ID);
+    public static final RegistryObject<SoundEvent> PURPLE_HAZE_STRANGLE_RUN =
+                register(ModSounds.PURPLE_HAZE_STRANGLE_RUN, ModSounds.PURPLE_HAZE_STRANGLE_RUN_ID);
+
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_ARMOR_OFF =
+                register(ModSounds.POLNAREFF_SC_ARMOR_OFF, ModSounds.POLNAREFF_SC_ARMOR_OFF_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_SUMMON_1 =
+                register(ModSounds.POLNAREFF_SC_SUMMON_1, ModSounds.POLNAREFF_SC_SUMMON_1_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_SUMMON_2 =
+                register(ModSounds.POLNAREFF_SC_SUMMON_2, ModSounds.POLNAREFF_SC_SUMMON_2_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_HURT_1 =
+                register(ModSounds.POLNAREFF_SC_HURT_1, ModSounds.POLNAREFF_SC_HURT_1_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_HURT_2 =
+                register(ModSounds.POLNAREFF_SC_HURT_2, ModSounds.POLNAREFF_SC_HURT_2_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_IDLE_1 =
+                register(ModSounds.POLNAREFF_SC_IDLE_1, ModSounds.POLNAREFF_SC_IDLE_1_ID);
+    public static final RegistryObject<SoundEvent> POLNAREFF_SC_DIE_1 =
+                register(ModSounds.POLNAREFF_SC_DIE_1, ModSounds.POLNAREFF_SC_DIE_1_ID);
 
     public static final RegistryObject<SoundEvent> SILVER_CHARIOT_SUMMON =
             register(ModSounds.SILVER_CHARIOT_SUMMON, ModSounds.SILVER_CHARIOT_SUMMON_ID);
@@ -1270,6 +1328,16 @@ public class ForgeSounds {
             register(ModSounds.SILVER_CHARIOT_RAPIER_SHOT_BLOCK_IMPACT, ModSounds.SILVER_CHARIOT_RAPIER_SHOT_BLOCK_IMPACT_ID);
     public static final RegistryObject<SoundEvent> SILVER_CHARIOT_RAPIER_SHOT_ENTITY_IMPACT =
             register(ModSounds.SILVER_CHARIOT_RAPIER_SHOT_ENTITY_IMPACT, ModSounds.SILVER_CHARIOT_RAPIER_SHOT_ENTITY_IMPACT_ID);
+    public static final RegistryObject<SoundEvent> SILVER_CHARIOT_STATUE_CUTTING =
+            register(ModSounds.SILVER_CHARIOT_STATUE_CUTTING, ModSounds.SILVER_CHARIOT_STATUE_CUTTING_ID);
+    public static final RegistryObject<SoundEvent> SILVER_CHARIOT_SLAB_CUTTING =
+            register(ModSounds.SILVER_CHARIOT_SLAB_CUTTING, ModSounds.SILVER_CHARIOT_SLAB_CUTTING_ID);
+    public static final RegistryObject<SoundEvent> SILVER_CHARIOT_SELF_GRAB =
+            register(ModSounds.SILVER_CHARIOT_SELF_GRAB, ModSounds.SILVER_CHARIOT_SELF_GRAB_ID);
+    public static final RegistryObject<SoundEvent> SILVER_CHARIOT_SELF_THROW =
+            register(ModSounds.SILVER_CHARIOT_SELF_THROW, ModSounds.SILVER_CHARIOT_SELF_THROW_ID);
+    public static final RegistryObject<SoundEvent> SILVER_CHARIOT_RAPIER_SPIN =
+            register(ModSounds.SILVER_CHARIOT_RAPIER_SPIN, ModSounds.SILVER_CHARIOT_RAPIER_SPIN_ID);
 
     public static final RegistryObject<SoundEvent> EMPEROR_SUMMON =
             register(ModSounds.EMPEROR_SUMMON, ModSounds.EMPEROR_SUMMON_ID);
@@ -1491,6 +1559,8 @@ public class ForgeSounds {
             register(ModSounds.HALLELUJAH, ModSounds.HALLELUJAH_ID);
     public static final RegistryObject<SoundEvent> TORTURE_DANCE =
             register(ModSounds.TORTURE_DANCE, ModSounds.TORTURE_DANCE_ID);
+    public static final RegistryObject<SoundEvent> CHAKA_HFTF =
+            register(ModSounds.CHAKA_HFTF, ModSounds.CHAKA_HFTF_ID);
     public static final RegistryObject<SoundEvent> WHITESNAKE_SUMMON =
             register(ModSounds.WHITESNAKE_SUMMON, ModSounds.WHITESNAKE_SUMMON_ID);
     public static final RegistryObject<SoundEvent> WHITESNAKE_PUNCH_HIT =
@@ -1555,6 +1625,25 @@ public class ForgeSounds {
             register(ModSounds.PUCCI_RESPONSE_ANASUI_1, ModSounds.PUCCI_RESPONSE_ANASUI_1_ID);
     public static final RegistryObject<SoundEvent> PUCCI_RESPONSE_ANASUI_2 =
             register(ModSounds.PUCCI_RESPONSE_ANASUI_2, ModSounds.PUCCI_RESPONSE_ANASUI_2_ID);
+
+    public static final RegistryObject<SoundEvent> CTR_SUMMON_EVENT =
+            register(ModSounds.CTR_SUMMON, ModSounds.CTR_SUMMON_ID);
+    public static final RegistryObject<SoundEvent> CTR_HEAL_EVENT =
+            register(ModSounds.CTR_HEAL, ModSounds.CTR_HEAL_ID);
+    public static final RegistryObject<SoundEvent> CTR_LIFE_CLUTCH_EVENT =
+            register(ModSounds.CTR_LIFE_CLUTCH, ModSounds.CTR_LIFE_CLUTCH_ID);
+    public static final RegistryObject<SoundEvent> CTR_RAIN_STABILIZING_EVENT =
+            register(ModSounds.CTR_RAIN_STABILIZING, ModSounds.CTR_RAIN_STABILIZING_ID);
+    public static final RegistryObject<SoundEvent> CTR_DETACH_1_EVENT =
+            register(ModSounds.CTR_DETACH_1, ModSounds.CTR_DETACH_1_ID);
+    public static final RegistryObject<SoundEvent> CTR_DETACH_2_EVENT =
+            register(ModSounds.CTR_DETACH_2, ModSounds.CTR_DETACH_2_ID);
+    public static final RegistryObject<SoundEvent> CTR_RAIN_STEP_1_EVENT =
+            register(ModSounds.CTR_RAIN_STEP_1, ModSounds.CTR_RAIN_STEP_1_ID);
+    public static final RegistryObject<SoundEvent> CTR_RAIN_STEP_2_EVENT =
+            register(ModSounds.CTR_RAIN_STEP_2, ModSounds.CTR_RAIN_STEP_2_ID);
+    public static final RegistryObject<SoundEvent> CTR_RAIN_STEP_3_EVENT =
+            register(ModSounds.CTR_RAIN_STEP_3, ModSounds.CTR_RAIN_STEP_3_ID);
 
     public static RegistryObject<SoundEvent> register(String id, ResourceLocation id2){
         return SOUNDS.register(id, () -> SoundEvent.createVariableRangeEvent(id2));

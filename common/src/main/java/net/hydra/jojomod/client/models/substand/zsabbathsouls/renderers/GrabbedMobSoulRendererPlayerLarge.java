@@ -55,6 +55,7 @@ public class GrabbedMobSoulRendererPlayerLarge<T extends GrabbedMobSoulPlayerLar
 
     @Override
     public void render(GrabbedMobSoulPlayerLarge mobEntity, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i) {
+        matrixStack.scale(0.94f, 0.94f, 0.94f);
         super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 

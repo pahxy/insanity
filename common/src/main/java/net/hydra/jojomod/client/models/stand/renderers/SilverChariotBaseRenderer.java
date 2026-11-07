@@ -10,6 +10,7 @@ import net.hydra.jojomod.client.models.stand.SilverChariotModel;
 import net.hydra.jojomod.client.models.stand.StandModel;
 import net.hydra.jojomod.entity.stand.SilverChariotEntity;
 import net.hydra.jojomod.entity.stand.StandEntity;
+import net.hydra.jojomod.util.config.ConfigManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -18,9 +19,11 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Deque;
 import java.util.Random;
 
 public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRenderer<SilverChariotEntity> {
@@ -46,9 +49,14 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
     private static final ResourceLocation YELLOW = new ResourceLocation(Roundabout.MOD_ID, "textures/stand/silver_chariot/yellow_silver_chariot.png");
     private static final ResourceLocation PHARAOH = new ResourceLocation(Roundabout.MOD_ID, "textures/stand/silver_chariot/pharaoh_silver_chariot.png");
 
-    public SilverChariotBaseRenderer(EntityRendererProvider.Context context, StandModel root) {
+    public SilverChariotBaseRenderer(EntityRendererProvider.Context context, StandModel<SilverChariotEntity> root) {
         // super(context, new SilverChariotModel<>(context.bakeLayer(ModEntityRendererClient.SILVER_CHARIOT_LAYER)), 0.0F);
         super(context, root, 0f);
+        addLayer(
+                new SilverChariotItemLayer<>(
+                        this
+                )
+        );
     }
 
     public static ResourceLocation getSkin(byte bt) {
@@ -127,7 +135,15 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
     }
 
     @Override
-    public void render(SilverChariotEntity mobEntity, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i) {
+    public void render(
+            SilverChariotEntity mobEntity,
+            float entityYaw,
+            float partialTicks,
+            PoseStack matrixStack,
+            MultiBufferSource vertexConsumerProvider,
+            int packedLight
+    ) {
+        Minecraft minecraft = Minecraft.getInstance();
         // super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
         float factor = 0.5F + (mobEntity.getSizePercent()/2);
         if (mobEntity.isBaby()) {
@@ -136,21 +152,37 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
             matrixStack.scale(0.87f * factor, 0.87f * factor, 0.87f * factor);
         }
 
+        super.render(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight);
+        ItemStack offhandItem = mobEntity.getSilverChariotOffhandItem();
 
+        // TODO: Render item in Silver Chariot hand
 
-        float alpha = 0.30F;
-        if (!mobEntity.getArmoured()) {
-            // renderAfterimage(mobEntity, f, g, matrixStack, vertexConsumerProvider, i, alpha, 2.5D, -2.0D, -1.5D);
-            // renderAfterimage(mobEntity, f, g, matrixStack, vertexConsumerProvider, i, alpha, 1.5D, -2.0D, 3.5D);
-            // renderAfterimage(mobEntity, f, g, matrixStack, vertexConsumerProvider, i, alpha, -1.5D, -2.0D, 3.5D);
-            // renderAfterimage(mobEntity, f, g, matrixStack, vertexConsumerProvider, i, alpha, -2.5D, -2.0D, -1.5D);
-            this.renderAfterimages(mobEntity, f, g, matrixStack, vertexConsumerProvider, i, alpha);
+        // float alpha = 0.50F;
+        // float alpha = ConfigManager.getClientConfig().silverChariotSettings.silverChariotAfterimageOpacity;
+        float alpha = 1.0F;
+        boolean renderAfterimages = ConfigManager.getClientConfig().silverChariotSettings.silverChariotRenderAfterimages;
+        boolean renderAfterimagesInFirstPerson = ConfigManager.getClientConfig().silverChariotSettings.silverChariotShouldRenderAfterimagesForUserWhileInFirstPerson;
+        if (renderAfterimages && !mobEntity.getArmoured() && mobEntity.getAfterimageStates().size() >= 2) {
+            // renderAfterimage1(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight, alpha, 2.5D, -2.0D, -1.5D);
+            // renderAfterimage1(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight, alpha, 1.5D, -2.0D, 3.5D);
+            // renderAfterimage1(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight, alpha, -1.5D, -2.0D, 3.5D);
+            // renderAfterimage1(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight, alpha, -2.5D, -2.0D, -1.5D);
+            // this.model.setAlpha(alpha);
+            this.model.stand.visible = !(renderAfterimagesInFirstPerson
+                    && mobEntity.getUser() == minecraft.player
+                    && minecraft.options.getCameraType().isFirstPerson());
+            this.renderAfterimages(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight, alpha);
+            this.model.stand.visible = true;
+            this.model.head.visible = !(mobEntity.isRemoteControlled()
+                    && mobEntity.getUser() == minecraft.player
+                    && minecraft.options.getCameraType().isFirstPerson());
         }
-        super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
+        // this.model.setAlpha(1f);
         // this.model.getHead().visible = true;
+        // super.render(mobEntity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, packedLight);
     }
 
-    public void renderAfterimage(SilverChariotEntity mobEntity, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, float alpha, double x, double y, double z) {
+    public void renderAfterimage1(SilverChariotEntity mobEntity, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, float alpha, double x, double y, double z) {
 
         matrixStack.pushPose();
 
@@ -159,7 +191,8 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
         matrixStack.mulPose((Axis.ZP.rotationDegrees(-180.0F)));
         matrixStack.translate(x, y, z);
 
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityTranslucent(getTextureLocation(mobEntity)));
+        // VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityTranslucent(getTextureLocation(mobEntity)));
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(mobEntity)));
         this.model.renderToBuffer(matrixStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
         matrixStack.popPose();
     }
@@ -187,8 +220,37 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
 
     private Random rand = new Random();
 
-    public void renderAfterimages(SilverChariotEntity mobEntity, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, float alpha) {
-        Vec3 currentPos = mobEntity.position();
+    public static Vec3 interpolate(
+            SilverChariotAfterimageState oldState,
+            SilverChariotAfterimageState newState,
+            float partialTick
+    ) {
+        return oldState.getPos().lerp(newState.getPos(), partialTick);
+    }
+
+    private void renderAfterimage1(
+            SilverChariotEntity mobEntity,
+            Deque<SilverChariotAfterimageState> deque,
+            int moment,
+            float alpha,
+            float partialTick,
+            PoseStack matrixStack,
+            MultiBufferSource vertexConsumerProvider,
+            int i
+    ) {
+
+    }
+
+    public void renderAfterimages(
+            SilverChariotEntity mobEntity,
+            float entityYaw,
+            float g,
+            PoseStack matrixStack,
+            MultiBufferSource vertexConsumerProvider,
+            int i,
+            float alpha) {
+        Vec3 currentPos = mobEntity.getPosition(g);
+        // Vec3 currentPos = mobEntity.position();
         int index = 0;
 
         float yaw = (float) Math.toRadians(-mobEntity.getYRot());
@@ -212,11 +274,65 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
                     relativePos.y + 1.5D,
                     relativePos.z
             );
-            this.setupRotations(mobEntity, matrixStack, mobEntity.tickCount + g, f, g);
+            this.setupRotations(mobEntity, matrixStack, mobEntity.tickCount + g, entityYaw, g);
+            // this.setupRotations(mobEntity, matrixStack, g, entityYaw, g);
             matrixStack.mulPose((Axis.ZP.rotationDegrees(180.0F)));
             this.scale(mobEntity, matrixStack, g);
 
-            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityTranslucent(getTextureLocation(mobEntity)));
+            // VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityTranslucent(getTextureLocation(mobEntity)));
+            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(mobEntity)));
+            // this.model.head.visible = true;
+            this.model.renderToBuffer(matrixStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
+            matrixStack.popPose();
+            index += 1;
+            index = index % 5;
+            if (index % 5 == 2) {
+                index += 1;
+            }
+        }
+    }
+
+    public void renderAfterimages1(
+            SilverChariotEntity mobEntity,
+            float entityYaw,
+            float g,
+            PoseStack matrixStack,
+            MultiBufferSource vertexConsumerProvider,
+            int i,
+            float alpha) {
+        Vec3 currentPos = mobEntity.getPosition(g);
+        // Vec3 currentPos = mobEntity.position();
+        int index = 0;
+
+        float yaw = (float) Math.toRadians(-mobEntity.getYRot());
+
+        float xOffset = Mth.cos(yaw);
+        float zOffset = Mth.sin(yaw);
+
+        float initOffset = -1.6F;
+        float offsetSpacing = 0.8F;
+
+        for (SilverChariotAfterimageState state : mobEntity.getAfterimageStates()) {
+            Vec3 prevPos = state.getPos();
+            float prevXRot = state.getXRot();
+            float prevYRot = state.getYRot();
+
+            Vec3 relativePos = prevPos.subtract(currentPos);
+
+            matrixStack.pushPose();
+            matrixStack.translate(
+                    relativePos.x,
+                    relativePos.y + 1.5D,
+                    relativePos.z
+            );
+            this.setupRotations(mobEntity, matrixStack, mobEntity.tickCount + g, entityYaw, g);
+            // this.setupRotations(mobEntity, matrixStack, g, entityYaw, g);
+            matrixStack.mulPose((Axis.ZP.rotationDegrees(180.0F)));
+            this.scale(mobEntity, matrixStack, g);
+
+            // VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityTranslucent(getTextureLocation(mobEntity)));
+            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(mobEntity)));
+            // this.model.head.visible = true;
             this.model.renderToBuffer(matrixStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
             matrixStack.popPose();
             index += 1;
@@ -231,6 +347,6 @@ public class SilverChariotBaseRenderer<T extends StandEntity> extends StandRende
     @Override
     protected RenderType getRenderType(SilverChariotEntity entity, boolean showBody, boolean translucent, boolean showOutline) {
         // return super.getRenderType(entity, showBody, true, showOutline);
-        return RenderType.entityCutoutNoCull(getTextureLocation(entity));
+        return RenderType.entityTranslucent(getTextureLocation(entity));
     }
 }

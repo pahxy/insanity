@@ -7,10 +7,7 @@ import net.hydra.jojomod.client.ClientNetworking;
 import net.hydra.jojomod.client.ClientUtil;
 import net.hydra.jojomod.entity.KingCrimsonCloneEntity;
 import net.hydra.jojomod.entity.projectile.SoftAndWetPlunderBubbleEntity;
-import net.hydra.jojomod.entity.stand.FollowingStandEntity;
-import net.hydra.jojomod.entity.stand.ManhattanTransferEntity;
-import net.hydra.jojomod.entity.stand.StandEntity;
-import net.hydra.jojomod.entity.stand.TheWorldEntity;
+import net.hydra.jojomod.entity.stand.*;
 import net.hydra.jojomod.event.SavedSecond;
 import net.hydra.jojomod.event.index.PacketDataIndex;
 import net.hydra.jojomod.event.index.PlayerPosIndex;
@@ -167,33 +164,21 @@ public abstract class EntityAndData implements IEntityAndData {
     public boolean rdbt$returnPickup(){
         return rdbt$canBePickedUp;
     }
+    @Unique
+    @Override
+    public void rdbt$setReturnPickup(boolean ye){
+        rdbt$canBePickedUp = ye;
+    }
 
     @Inject(method = "saveWithoutId(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V",shift = At.Shift.AFTER))
     public void roundabout$addAdditionalSaveDataX(CompoundTag $$0, CallbackInfoReturnable<CompoundTag> cir){
-        $$0.putBoolean("canMobGrab",rdbt$canBePickedUp);
-        $$0.putInt("inForeignWorld",rdbt$inForeignWorld);
-        $$0.putByte("nativeToWorld",rdbt$nativeTo);
-        $$0.putByte("originWorld",rdbt$originWorld);
-        if (rdbt$nativeCopy != null){
-            $$0.putUUID("nativeToWorldCopy",rdbt$nativeCopy);
-        }
+        MainUtil.saveEntityData($$0,this);
     }
 
     @Inject(method = "load(Lnet/minecraft/nbt/CompoundTag;)V",
             at = @At(value = "INVOKE",target = "Lnet/minecraft/world/entity/Entity;readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V",shift = At.Shift.AFTER))
     public void roundabout$readAdditionalSaveDataX(CompoundTag $$0, CallbackInfo ci){
-        if ($$0.contains("canMobGrab")) {
-            rdbt$canBePickedUp = $$0.getBoolean("canMobGrab");
-        } if ($$0.contains("inForeignWorld")) {
-            rdbt$inForeignWorld = $$0.getInt("inForeignWorld");
-        } if ($$0.contains("nativeToWorld")) {
-            rdbt$nativeTo = $$0.getByte("nativeToWorld");
-        } if ($$0.hasUUID("nativeToWorldCopy")) {
-            rdbt$nativeCopy = $$0.getUUID("nativeToWorldCopy");
-        } if ($$0.hasUUID("originWorld")) {
-            rdbt$nativeCopy = $$0.getUUID("originWorld");
-        }
-
+       MainUtil.loadEntityData($$0,this);
     }
 
 
@@ -689,6 +674,8 @@ public abstract class EntityAndData implements IEntityAndData {
     public boolean isShiftKeyDown() {
         return false;
     }
+    @Shadow
+    public abstract void setShiftKeyDown(boolean bl);
     @Inject(method = "canRide", at = @At("HEAD"), cancellable = true)
     protected void roundabout$canRide(Entity $$0, CallbackInfoReturnable<Boolean> cir){
         if ($$0 instanceof StandEntity && (!(((Entity)(Object)this) instanceof LivingEntity) || ((TimeStop) ((Entity) (Object) this).level()).CanTimeStopEntity(((Entity) (Object) this)))){
@@ -697,9 +684,19 @@ public abstract class EntityAndData implements IEntityAndData {
     }
     @Inject(method = "startRiding(Lnet/minecraft/world/entity/Entity;Z)Z", at = @At("HEAD"), cancellable = true)
     protected void roundabout$startRiding(Entity $$0, boolean $$1, CallbackInfoReturnable<Boolean> cir){
-        if (((Entity)(Object)this) instanceof LivingEntity LE
+        if (
+                ((Entity)(Object)this) instanceof LivingEntity LE
+                        && ((StandUser)LE).roundabout$getStand() != null
+                        && ((StandUser)LE).roundabout$getStand() instanceof SilverChariotEntity silverChariotEntity
+                        && silverChariotEntity.isSelfCarryModeActive()
+        ) {
+            this.setShiftKeyDown(false);
+            cir.setReturnValue(true);
+        } else if (((Entity)(Object)this) instanceof LivingEntity LE
                 && ((StandUser)LE).roundabout$getStand() != null
-                && ($$0.getRootVehicle().is(((StandUser)LE).roundabout$getStand()) || $$0.getRootVehicle().hasPassenger(((StandUser)LE).roundabout$getStand()))){
+                && ($$0.getRootVehicle().is(((StandUser)LE).roundabout$getStand()) || $$0.getRootVehicle().hasPassenger(((StandUser)LE).roundabout$getStand()))
+                && !($$0 instanceof SilverChariotEntity sc)
+        ){
             cir.setReturnValue(false);
         }
     }

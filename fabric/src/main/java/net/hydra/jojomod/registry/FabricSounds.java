@@ -175,6 +175,9 @@ public class FabricSounds {
         addSound(ModSounds.JACKAL_FIRE_ID, ModSounds.JACKAL_FIRE_EVENT);
         addSound(ModSounds.JACKAL_RELOAD_ID, ModSounds.JACKAL_RELOAD_EVENT);
 
+        addSound(ModSounds.BERETTA_FIRE_ID, ModSounds.BERETTA_FIRE_EVENT);
+        addSound(ModSounds.BERETTA_RELOAD_ID, ModSounds.BERETTA_RELOAD_EVENT);
+
         addSound(ModSounds.BULLET_PENTRATION_ID, ModSounds.BULLET_PENTRATION_EVENT);
         addSound(ModSounds.BULLET_RICOCHET_ID, ModSounds.BULLET_RICOCHET_EVENT);
         addSound(ModSounds.MAGIC_DING_ID, ModSounds.MAGIC_DING_EVENT);
@@ -393,6 +396,7 @@ public class FabricSounds {
         addSound(ModSounds.KQ_MINESWEEPER_SHIBABA_ID, ModSounds.KQ_MINESWEEPER_SHIBABA_EVENT);
         addSound(ModSounds.KILLER_QUEEN_PUNCH_ID, ModSounds.KILLER_QUEEN_PUNCH_EVENT);
         addSound(ModSounds.KILLER_QUEEN_IMPALE_ID, ModSounds.KILLER_QUEEN_IMPALE_EVENT);
+        addSound(ModSounds.KILLER_QUEEN_BARRAGE_HIT_ID, ModSounds.KILLER_QUEEN_BARRAGE_HIT_EVENT);
         addSound(ModSounds.KILLER_QUEEN_PUNCH_1_ID, ModSounds.KILLER_QUEEN_PUNCH_1_EVENT);
         addSound(ModSounds.KILLER_QUEEN_PUNCH_2_ID, ModSounds.KILLER_QUEEN_PUNCH_2_EVENT);
         addSound(ModSounds.KILLER_QUEEN_HEAVY_PUNCH_ID, ModSounds.KILLER_QUEEN_HEAVY_PUNCH_EVENT);
@@ -420,9 +424,6 @@ public class FabricSounds {
         addSound(ModSounds.KQ_MINESWEEPER_BTD_NOISE_ID, ModSounds.KQ_MINESWEEPER_BTD_NOISE_EVENT);
         addSound(ModSounds.KILLER_QUEEN_SUMMON_DARK_ID, ModSounds.KILLER_QUEEN_SUMMON_DARK_EVENT);
         addSound(ModSounds.KILLER_QUEEN_EXPLOSION_ID, ModSounds.KILLER_QUEEN_EXPLOSION_EVENT);
-        addSound(ModSounds.KILLER_QUEEN_EXPLOSION_1_ID, ModSounds.KILLER_QUEEN_EXPLOSION_1_EVENT);
-        addSound(ModSounds.KILLER_QUEEN_EXPLOSION_2_ID, ModSounds.KILLER_QUEEN_EXPLOSION_2_EVENT);
-        addSound(ModSounds.KILLER_QUEEN_EXPLOSION_3_ID, ModSounds.KILLER_QUEEN_EXPLOSION_3_EVENT);
         addSound(ModSounds.KILLER_QUEEN_DETONATE_ID, ModSounds.KILLER_QUEEN_DETONATE_EVENT);
         addSound(ModSounds.KILLER_QUEEN_BUBBLE_LAUNCH_ID, ModSounds.KILLER_QUEEN_BUBBLE_LAUNCH_EVENT);
         addSound(ModSounds.KILLER_QUEEN_BUBBLE_SELECT_ID, ModSounds.KILLER_QUEEN_BUBBLE_SELECT_EVENT);
@@ -607,6 +608,12 @@ public class FabricSounds {
         addSound(ModSounds.LYIN_EYES_VISION_ID, ModSounds.LYIN_EYES_VISION_EVENT);
         addSound(ModSounds.LYIN_EYES_GATHER_ID, ModSounds.LYIN_EYES_GATHER_EVENT);
 
+        addSound(ModSounds.SUMMON_GOLD_EXPERIENCE_ID, ModSounds.SUMMON_GOLD_EXPERIENCE_EVENT);
+        addSound(ModSounds.GOLD_EXPERIENCE_HIT_ID, ModSounds.GOLD_EXPERIENCE_HIT_EVENT);
+        addSound(ModSounds.GOLD_EXPERIENCE_LIFE_CREATION_ID, ModSounds.GOLD_EXPERIENCE_LIFE_CREATION_EVENT);
+        addSound(ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_ID, ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_EVENT);
+        addSound(ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_WINDUP_ID, ModSounds.GOLD_EXPERIENCE_LIFE_PUNCH_WINDUP_EVENT);
+
         addSound(ModSounds.SUMMON_GREEN_DAY_ID, ModSounds.SUMMON_GREEN_DAY_EVENT);
         addSound(ModSounds.SUMMON_WALKING_ID, ModSounds.SUMMON_WALKING_EVENT);
         addSound(ModSounds.HEEL_RAISE_ID, ModSounds.HEEL_RAISE_EVENT);
@@ -631,6 +638,8 @@ public class FabricSounds {
         addSound(ModSounds.BC_BUNDLE_SUMMON_ID, ModSounds.BC_BUNDLE_SUMMON_EVENT);
         addSound(ModSounds.BC_HELICOPTER_SUMMON_ID, ModSounds.BC_HELICOPTER_SUMMON_EVENT);
         addSound(ModSounds.BC_TANK_SUMMON_ID, ModSounds.BC_TANK_SUMMON_EVENT);
+        addSound(ModSounds.BC_PARACHUTE_OPEN_ID, ModSounds.BC_PARACHUTE_OPEN_EVENT);
+        addSound(ModSounds.BC_PARACHUTE_LOOP_ID, ModSounds.BC_PARACHUTE_LOOP_EVENT);
 
         addSound(ModSounds.DIO_HOHO_ID, ModSounds.DIO_HOHO_EVENT);
         addSound(ModSounds.DIO_HOHO_2_ID, ModSounds.DIO_HOHO_2_EVENT);
@@ -724,6 +733,7 @@ public class FabricSounds {
 
         addSound(ModSounds.TORTURE_DANCE_ID, ModSounds.TORTURE_DANCE_EVENT);
         addSound(ModSounds.HALLELUJAH_ID, ModSounds.HALLELUJAH_EVENT);
+        addSound(ModSounds.CHAKA_HFTF_ID, ModSounds.CHAKA_HFTF_EVENT);
         addSound(ModSounds.VSONG_SILENT_REVERIES_ID, ModSounds.VSONG_SILENT_REVERIES_EVENT);
         addSound(ModSounds.VSONG_TWISTED_ID, ModSounds.VSONG_TWISTED_EVENT);
         addSound(ModSounds.VSONG_GOTHIC_ORGAN_ID, ModSounds.VSONG_GOTHIC_ORGAN_EVENT);
@@ -744,6 +754,9 @@ public class FabricSounds {
 
         addSound(ModSounds.GREEN_DAY_SPLIT_ID,ModSounds.GREEN_DAY_SPLIT_EVENT);
         addSound(ModSounds.GREEN_DAY_ARM_SPIN_ID,ModSounds.GREEN_DAY_ARM_SPIN_EVENT);
+        addSound(ModSounds.GREEN_DAY_PUNCH_ID,ModSounds.GREEN_DAY_PUNCH_EVENT);
+        addSound(ModSounds.GREEN_DAY_HEAVY_PUNCH_ID,ModSounds.GREEN_DAY_HEAVY_PUNCH_EVENT);
+        addSound(ModSounds.GREEN_DAY_BARRAGE_HIT_ID,ModSounds.GREEN_DAY_BARRAGE_HIT_EVENT);
         addSound(ModSounds.GREEN_DAY_MOLD_SPREAD_ID,ModSounds.GREEN_DAY_MOLD_SPREAD_EVENT);
         addSound(ModSounds.GREEN_DAY_STITCH_ID,ModSounds.GREEN_DAY_STITCH_EVENT);
         addSound(ModSounds.SUMMON_KING_CRIMSON_ID,ModSounds.SUMMON_KING_CRIMSON_EVENT);
@@ -800,8 +813,27 @@ public class FabricSounds {
 
         addSound(ModSounds.PURPLE_HAZE_SUMMON_ID,ModSounds.PURPLE_HAZE_SUMMON_EVENT);
         addSound(ModSounds.PURPLE_HAZE_BARRAGE_CRY_ID,ModSounds.PURPLE_HAZE_BARRAGE_CRY_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_HEAVY_PUNCH_ID,ModSounds.PURPLE_HAZE_HEAVY_PUNCH_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_PUNCH_ID,ModSounds.PURPLE_HAZE_PUNCH_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_KICK_BARRAGE_CRY_ID,ModSounds.PURPLE_HAZE_KICK_BARRAGE_CRY_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_BARRAGE_HIT_ID,ModSounds.PURPLE_HAZE_BARRAGE_HIT_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_BARRAGE_FINISHER_ID,ModSounds.PURPLE_HAZE_BARRAGE_FINISHER_EVENT);
         addSound(ModSounds.PURPLE_HAZE_SMOKE_ID,ModSounds.PURPLE_HAZE_SMOKE_EVENT);
         addSound(ModSounds.PURPLE_HAZE_DISTORTION_SMOKE_ID,ModSounds.PURPLE_HAZE_DISTORTION_SMOKE_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_POD_BITE_ID,ModSounds.PURPLE_HAZE_POD_BITE_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_POD_LAUNCH_ID,ModSounds.PURPLE_HAZE_POD_LAUNCH_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_STRANGLE_START_ID,ModSounds.PURPLE_HAZE_STRANGLE_START_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_STRANGLE_RUN_ID,ModSounds.PURPLE_HAZE_STRANGLE_RUN_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_STRANGLE_GRAB_ID,ModSounds.PURPLE_HAZE_STRANGLE_GRAB_EVENT);
+        addSound(ModSounds.PURPLE_HAZE_SWITCH_POD_ID,ModSounds.PURPLE_HAZE_SWITCH_POD_EVENT);
+
+        addSound(ModSounds.POLNAREFF_SC_SUMMON_1_ID,ModSounds.POLNAREFF_SC_SUMMON_1_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_SUMMON_2_ID,ModSounds.POLNAREFF_SC_SUMMON_2_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_HURT_1_ID,ModSounds.POLNAREFF_SC_HURT_1_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_HURT_2_ID,ModSounds.POLNAREFF_SC_HURT_2_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_DIE_1_ID,ModSounds.POLNAREFF_SC_DIE_1_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_IDLE_1_ID,ModSounds.POLNAREFF_SC_IDLE_1_EVENT);
+        addSound(ModSounds.POLNAREFF_SC_ARMOR_OFF_ID,ModSounds.POLNAREFF_SC_ARMOR_OFF_EVENT);
 
         addSound(ModSounds.SILVER_CHARIOT_SUMMON_ID,ModSounds.SILVER_CHARIOT_SUMMON_EVENT);
         addSound(ModSounds.SILVER_CHARIOT_BARRAGE_ID,ModSounds.SILVER_CHARIOT_BARRAGE_EVENT);
@@ -819,6 +851,11 @@ public class FabricSounds {
         addSound(ModSounds.SILVER_CHARIOT_RAPIER_SHOT_REDIRECT_ID, ModSounds.SILVER_CHARIOT_RAPIER_SHOT_REDIRECT_EVENT);
         addSound(ModSounds.SILVER_CHARIOT_RAPIER_SHOT_BLOCK_IMPACT_ID,ModSounds.SILVER_CHARIOT_RAPIER_SHOT_BLOCK_IMPACT_EVENT);
         addSound(ModSounds.SILVER_CHARIOT_RAPIER_SHOT_ENTITY_IMPACT_ID,ModSounds.SILVER_CHARIOT_RAPIER_SHOT_ENTITY_IMPACT_EVENT);
+        addSound(ModSounds.SILVER_CHARIOT_STATUE_CUTTING_ID, ModSounds.SILVER_CHARIOT_STATUE_CUTTING_EVENT);
+        addSound(ModSounds.SILVER_CHARIOT_SLAB_CUTTING_ID, ModSounds.SILVER_CHARIOT_SLAB_CUTTING_EVENT);
+        addSound(ModSounds.SILVER_CHARIOT_SELF_GRAB_ID, ModSounds.SILVER_CHARIOT_SELF_GRAB_EVENT);
+        addSound(ModSounds.SILVER_CHARIOT_SELF_THROW_ID, ModSounds.SILVER_CHARIOT_SELF_THROW_EVENT);
+        addSound(ModSounds.SILVER_CHARIOT_RAPIER_SPIN_ID, ModSounds.SILVER_CHARIOT_RAPIER_SPIN_EVENT);
 
         addSound(ModSounds.EMPEROR_SUMMON_ID,ModSounds.EMPEROR_SUMMON_EVENT);
         addSound(ModSounds.EMPEROR_IMPACT_ID,ModSounds.EMPEROR_IMPACT_EVENT);
@@ -827,5 +864,15 @@ public class FabricSounds {
         addSound(ModSounds.EMPEROR_METAL_ID,ModSounds.EMPEROR_METAL_EVENT);
         addSound(ModSounds.EMPEROR_NON_BLEED_ID,ModSounds.EMPEROR_NON_BLEED_EVENT);
         addSound(ModSounds.EMPEROR_SQUINT_ID,ModSounds.EMPEROR_SQUINT_EVENT);
+
+        addSound(ModSounds.CTR_SUMMON_ID,ModSounds.CTR_SUMMON_EVENT);
+        addSound(ModSounds.CTR_HEAL_ID,ModSounds.CTR_HEAL_EVENT);
+        addSound(ModSounds.CTR_LIFE_CLUTCH_ID,ModSounds.CTR_LIFE_CLUTCH_EVENT);
+        addSound(ModSounds.CTR_DETACH_1_ID,ModSounds.CTR_DETACH_1_EVENT);
+        addSound(ModSounds.CTR_DETACH_2_ID,ModSounds.CTR_DETACH_2_EVENT);
+        addSound(ModSounds.CTR_RAIN_STABILIZING_ID,ModSounds.CTR_RAIN_STABILIZING_EVENT);
+        addSound(ModSounds.CTR_RAIN_STEP_1_ID,ModSounds.CTR_RAIN_STEP_1_EVENT);
+        addSound(ModSounds.CTR_RAIN_STEP_2_ID,ModSounds.CTR_RAIN_STEP_2_EVENT);
+        addSound(ModSounds.CTR_RAIN_STEP_3_ID,ModSounds.CTR_RAIN_STEP_3_EVENT);
     }
 }
